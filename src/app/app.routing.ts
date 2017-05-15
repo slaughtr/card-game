@@ -23,7 +23,11 @@ const appRoutes: Routes = [
   {
     path: 'help',
     component: HelpComponent
-  }
+  },
+ {
+  path:'login',
+  component: LoginPageComponent
+ }
 ]
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

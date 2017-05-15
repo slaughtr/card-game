@@ -38,7 +38,6 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     LoginPageComponent,
-    HomePageComponent,
     MainPageComponent,
     PlayerDetailComponent,
     AboutComponent,
