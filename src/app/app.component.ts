@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import {AuthService} from './providers/auth.service';
 
 
 @Component({
@@ -9,4 +10,13 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class AppComponent {
   title = 'app works!';
+  user: any = null;
+
+  constructor (private authService: AuthService){}
+
+  ngOnInit(){
+    this.authService.getCurrentUser().subscribe(user=>{
+      this.user = user;
+    })
+  }
 }

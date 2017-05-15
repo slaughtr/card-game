@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {AngularFireModule} from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth'
 import { masterFirebaseConfig } from './api-keys';
 import {AuthService} from './providers/auth.service';
 import { AppComponent } from './app.component';
@@ -40,6 +41,8 @@ const routes: Routes = [
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     RouterModule.forRoot(routes)
   ],
   providers: [AuthService],
