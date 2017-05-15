@@ -5,7 +5,7 @@ import { MainPageComponent } from './main-page/main-page.component'
 import { PlayerDetailComponent } from './player-detail/player-detail.component'
 import { AboutComponent } from './about/about.component'
 import { HelpComponent } from './help/help.component'
-import { LoginPageComponent } from './login-page/login-page.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   {
@@ -25,10 +25,10 @@ const appRoutes: Routes = [
     path: 'help',
     component: HelpComponent
   },
- {
-  path:'login',
-  component: LoginPageComponent
- }
+  {
+  path:'dashboard',
+  component: DashboardComponent
+  }
 ]
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

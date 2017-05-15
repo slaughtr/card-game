@@ -26,6 +26,7 @@ import { routing } from './app.routing';
 import { GameComponent } from './game/game.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DiscardComponent } from './discard/discard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export const firebaseConfig = {
@@ -49,8 +50,9 @@ export const firebaseConfig = {
     LaneComponent,
     CardComponent,
     GameComponent,
-    DiscardComponent
-    NavbarComponent
+    DiscardComponent,
+    NavbarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

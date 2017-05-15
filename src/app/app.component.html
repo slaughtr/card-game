@@ -3,7 +3,26 @@
 <html>
   <body>
     <header>
-      <navbar></navbar>
+      <nav>
+        <h1><a href="/">Wizard v Pirates</a></h1>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/help">Help</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a (click)="goToPlayerDetailPage(player)">Player Info</a></li>
+
+            <li *ngIf="!user">
+              <button (click)="login()"> Login with Google </button>
+            </li>
+            <li *ngIf="user">
+              <button (click)="logout()">Logout</button>
+            </li>
+            <li >
+              <button>{{user}}</button>
+            </li>
+
+        </ul>
+      </nav>
     </header>
     <main>
       <router-outlet></router-outlet>
