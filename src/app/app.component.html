@@ -2,6 +2,17 @@
 <!-- placeholder menu -->
 <html>
   <body>
+
+    <ul>
+      <input type="checkbox" id="collapse"/>
+      <label for="collapse"></label>
+
+      <li><a href="/">Home</a></li>
+      <li><a href="/help">Help</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a (click)="goToPlayerDetailPage(player)">Player Info</a></li>
+    </ul>
+
     <header>
       <nav>
         <h1><a href="/">Wizard v Pirates</a></h1>
@@ -28,6 +39,7 @@
       <router-outlet></router-outlet>
     </main>
     <footer></footer>
+    
   </body>
 </html>
 

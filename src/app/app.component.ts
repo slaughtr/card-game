@@ -1,9 +1,7 @@
-
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {AuthService} from './providers/auth.service';
 import {Router} from '@angular/router';
-import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +10,6 @@ import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/d
 })
 
 export class AppComponent {
-
   title = 'Carrrd Game';
   user: any = null;
 

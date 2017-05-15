@@ -7,12 +7,10 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth'
 import { masterFirebaseConfig } from './api-keys';
 import {AuthService} from './providers/auth.service';
+import { CardService } from './card.service'
 import { AppComponent } from './app.component';
 import {RouterModule, Routes} from '@angular/router';
-
-
 import { LoginPageComponent } from './login-page/login-page.component';
-
 import { MainPageComponent } from './main-page/main-page.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { AboutComponent } from './about/about.component';
@@ -51,7 +49,6 @@ export const firebaseConfig = {
     CardComponent,
     GameComponent,
     DiscardComponent,
-    NavbarComponent,
     DashboardComponent
   ],
   imports: [
@@ -64,7 +61,8 @@ export const firebaseConfig = {
     routing,
 
   ],
-  providers: [AuthService],
+  providers: [AuthService, CardService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

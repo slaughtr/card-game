@@ -1,3 +1,11 @@
-<p>
-  hand works!
-</p>
+<div class="hand">
+
+  <div *ngFor="card of hand | async" class="cardInHand">
+
+    <img src={{card.?imageURL}}>
+    <p class="cardInHandAttack">{{card.?attack}}</p>
+    <p class="cardInHandHealth">{{card.?health}}</p>
+
+  </div>
+
+</div>
