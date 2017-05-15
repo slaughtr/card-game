@@ -1,24 +1,24 @@
 {
   "game": [{
-    "players": [],
+    "players": [0, 1],
     "turns": 0
   }],
   "player": [{
     "name": "Player 1",
-    "hand": [],
+    "hand": [0, 1, 2],
     "health": 50,
     "lanes": [0, 0, 0, 0, 0],
-    "discard": [],
-    "inDeck": [],
-    "selectedDeck": ""
+    "discard": [3, 4],
+    "inDeck": [5, 6, 7, 8, 9],
+    "selectedDeck": "Pirate"
   }, {
     "name": "Player 2",
-    "hand": [],
+    "hand": [10, 11, 12],
     "health": 50,
     "lanes": [0, 0, 0, 0, 0],
-    "inDeck": [],
-    "discard": [],
-    "selectedDeck": ""
+    "discard": [13, 14],
+    "inDeck": [15, 16, 17, 18, 19],
+    "selectedDeck": "Wizard"
   }],
   "deck": [{
     "type": "Pirate",
@@ -31,102 +31,102 @@
     "name": "Pirate Plasma Monkey",
     "health": 10,
     "attack": 5,
-    "special": ""
+    "special": "TBD"
   }, {
     "name": "Pirate Gunner",
     "health": 10,
     "attack": 5,
-    "special": ""
+    "special": "TBD"
     }, {
     "name": "Pirate Boatswain",
     "health": 10,
     "attack": 5,
-    "special": ""
+    "special": "TBD"
   }, {
     "name": "Pirate Quartermaster",
     "health": 10,
     "attack": 5,
-    "special": ""
+    "special": "TBD"
   }, {
     "name": "Pirate First Mate",
     "health": 10,
     "attack": 5,
-    "special": ""
+    "special": "TBD"
   }, {
   "name": "Pirate Captain",
   "health": 10,
   "attack": 5,
-  "special": ""
+  "special": "TBD"
   }, {
   "name": "Pirate Swashbuckler",
   "health": 10,
   "attack": 5,
-  "special": ""
+  "special": "TBD"
 }, {
   "name": "Pirate Buccaneer",
   "health": 10,
   "attack": 5,
-  "special": ""
+  "special": "TBD"
   }, {
     "name": "Pirate Captain's Cyborg Parrot",
     "health": 10,
     "attack": 5,
-    "special": ""
+    "special": "TBD"
   }, {
     "name": "Pirate Deckhand",
     "health": 10,
     "attack": 5,
-    "special": ""
+    "special": "TBD"
     }, {
     "name": "Wizard Portal Master",
     "health": 10,
     "attack": 5,
-    "special": ""
+    "special": "TBD"
   }, {
     "name": "Wizard Novice",
     "health": 10,
     "attack": 5,
-    "special": ""
+    "special": "TBD"
   }, {
     "name": "Wizard Apprentice",
     "health": 10,
     "attack": 5,
-    "special": ""
+    "special": "TBD"
   }, {
   "name": "Wizard Master",
   "health": 10,
   "attack": 5,
-  "special": ""
+  "special": "TBD"
   }, {
   "name": "Wizard Adept",
   "health": 10,
   "attack": 5,
-  "special": ""
+  "special": "TBD"
 }, {
   "name": "Wizard Expert Hacker",
   "health": 10,
   "attack": 5,
-  "special": ""
+  "special": "TBD"
   }, {
     "name": "Wizard Grandmaster",
     "health": 10,
     "attack": 5,
-    "special": ""
+    "special": "TBD"
   }, {
   "name": "Wizard's Fembot Familiar",
   "health": 10,
   "attack": 5,
-  "special": ""
+  "special": "TBD"
   }, {
   "name": "Wizard Wormhole Conjurer",
   "health": 10,
   "attack": 5,
-  "special": ""
+  "special": "TBD"
 }, {
   "name": "Wizard Half-Blood",
   "health": 10,
   "attack": 5,
-  "special": ""
+  "special": "TBD"
   }]
 
 }
