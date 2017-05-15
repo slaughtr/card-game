@@ -25,6 +25,7 @@ import { CardComponent } from './card/card.component';
 import { routing } from './app.routing';
 import { GameComponent } from './game/game.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DiscardComponent } from './discard/discard.component';
 
 
 export const firebaseConfig = {
@@ -33,7 +34,6 @@ export const firebaseConfig = {
   databaseURL: masterFirebaseConfig.databaseURL,
   storageBucket: masterFirebaseConfig.storageBucket
 };
-
 
 @NgModule({
   declarations: [
@@ -49,8 +49,8 @@ export const firebaseConfig = {
     LaneComponent,
     CardComponent,
     GameComponent,
+    DiscardComponent
     NavbarComponent
-
   ],
   imports: [
     BrowserModule,
