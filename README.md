@@ -111,6 +111,7 @@ TODO
     + Cards attack card directly across, subtracting attacking card's attack value from defending card's health value
     + If no defending card, subtrack attack from enemy mothership's health value
     + (eventually) cards can have "specials". This may be magic damage, extra damage against enemies when attacking, healing, etc
+    + "specials" idea: bonus for being adjacent to certain "types"
   + Defending:
     + Not much to say here
     + (eventually) "specials" may involve dodge/damage reduction
