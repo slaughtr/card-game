@@ -8,9 +8,23 @@ import {AngularFireAuthModule} from 'angularfire2/auth'
 import { masterFirebaseConfig } from './api-keys';
 import {AuthService} from './providers/auth.service';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import {RouterModule, Routes} from '@angular/router';
+
+
+import { LoginPageComponent } from './login-page/login-page.component';
+
+import { MainPageComponent } from './main-page/main-page.component';
+import { PlayerDetailComponent } from './player-detail/player-detail.component';
+import { AboutComponent } from './about/about.component';
+import { HelpComponent } from './help/help.component';
+import { BoardComponent } from './board/board.component';
+import { HandComponent } from './hand/hand.component';
+import { DeckComponent } from './deck/deck.component';
+import { LaneComponent } from './lane/lane.component';
+import { CardComponent } from './card/card.component';
+import { routing } from './app.routing';
+import { GameComponent } from './game/game.component';
+
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -19,22 +33,23 @@ export const firebaseConfig = {
   storageBucket: masterFirebaseConfig.storageBucket
 };
 
-const routes: Routes = [
-  {
-    path:"",
-    component: HomePageComponent
-  },
-  {
-   path:"login",
-   component: LoginPageComponent
-  }
-]
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    MainPageComponent,
+    PlayerDetailComponent,
+    AboutComponent,
+    HelpComponent,
+    BoardComponent,
+    HandComponent,
+    DeckComponent,
+    LaneComponent,
+    CardComponent,
+    GameComponent
+
   ],
   imports: [
     BrowserModule,
@@ -43,7 +58,8 @@ const routes: Routes = [
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    RouterModule.forRoot(routes)
+    routing,
+
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
