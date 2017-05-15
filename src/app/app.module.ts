@@ -49,7 +49,7 @@ export const firebaseConfig = {
     LaneComponent,
     CardComponent,
     GameComponent,
-    DiscardComponent
+    DiscardComponent,
     NavbarComponent
   ],
   imports: [

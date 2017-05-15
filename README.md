@@ -75,7 +75,7 @@ TODO
   + Highly dependent on elected player properties
 
 
-#### Services
+### Services
 + Database
   + Handle all database calls/updates
   +
@@ -86,7 +86,7 @@ TODO
 + ???
 
 
-#### Models
+### Models
 + Card
   + Used to populate player deck via game component
   + Other potentials?
@@ -100,7 +100,7 @@ TODO
   + Could be used for potential AI?
   +
 
-#### Mechanics
+### Mechanics
 + Lanes
   + Cannot play card unless lane has been 'typed' ('types' drawn from random seperate pile each turn, does not affect player drawing from deck)
   + Can only play card of same 'type' in 'typed' lane, unless lane is 'typed' to allow any card
