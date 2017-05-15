@@ -67,7 +67,11 @@ export class GameComponent implements OnInit {
     }
   }
 
+  advanceTurn() {
+    this.game.turn ++
+  }
 
+  
 
 
 }
