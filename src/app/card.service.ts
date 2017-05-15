@@ -6,7 +6,7 @@ export class CardService {
   cards: FirebaseListObservable<any[]>;
 
   constructor(private database: AngularFireDatabase) {
-    this.cards = database.list('cards');
+    this.cards = database.list('card');
   }
 
   getCards() {
