@@ -4,27 +4,27 @@
     "turns": 0
   }],
   "player": [{
-    "name": "",
+    "name": "Player 1",
     "hand": [],
-    "health": 0,
+    "health": 50,
     "lanes": [0, 0, 0, 0, 0],
     "discard": [],
     "inDeck": [],
     "selectedDeck": ""
   }, {
-    "name": "",
+    "name": "Player 2",
     "hand": [],
-    "health": 0,
+    "health": 50,
     "lanes": [0, 0, 0, 0, 0],
     "inDeck": [],
     "discard": [],
     "selectedDeck": ""
   }],
   "deck": [{
-    "type": "pirate",
+    "type": "Pirate",
     "cards": [0,1,2,3,4,5,6,7,8,9]
   }, {
-  "type": "wizard",
+  "type": "Wizard",
     "cards": [10,11,12,13,14,15,16,17,18,19]
     }],
   "card": [{
