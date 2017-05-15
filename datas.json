@@ -10,7 +10,7 @@
     "lanes": [0, 0, 0, 0, 0],
     "discard": [3, 4],
     "inDeck": [5, 6, 7, 8, 9],
-    "selectedDeck": "Pirate"
+    "selectedDeck": 0
   }, {
     "name": "Player 2",
     "hand": [10, 11, 12],
@@ -18,7 +18,7 @@
     "lanes": [0, 0, 0, 0, 0],
     "discard": [13, 14],
     "inDeck": [15, 16, 17, 18, 19],
-    "selectedDeck": "Wizard"
+    "selectedDeck": 1
   }],
   "deck": [{
     "type": "Pirate",
