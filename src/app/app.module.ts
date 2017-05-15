@@ -7,6 +7,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth'
 import { masterFirebaseConfig } from './api-keys';
 import {AuthService} from './providers/auth.service';
+import { CardService } from './card.service'
 import { AppComponent } from './app.component';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -62,7 +63,8 @@ export const firebaseConfig = {
     routing,
 
   ],
-  providers: [AuthService],
+  providers: [AuthService, CardService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
