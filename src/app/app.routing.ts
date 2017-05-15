@@ -5,6 +5,7 @@ import { MainPageComponent } from './main-page/main-page.component'
 import { PlayerDetailComponent } from './player-detail/player-detail.component'
 import { AboutComponent } from './about/about.component'
 import { HelpComponent } from './help/help.component'
+import { LoginPageComponent } from './login-page/login-page.component';
 
 const appRoutes: Routes = [
   {
