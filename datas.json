@@ -3,21 +3,23 @@
     "players": [0, 1],
     "turns": 0
   }],
-  "player": [{
+  "players": [{
     "name": "Player 1",
     "hand": [0, 1, 2],
     "health": 50,
     "lanes": [0, 0, 0, 0, 0],
+    "playedCards": [5, "empty", "empty", "empty", 6],
     "discard": [3, 4],
-    "inDeck": [5, 6, 7, 8, 9],
+    "inDeck": [7, 8, 9],
     "selectedDeck": 0
   }, {
     "name": "Player 2",
     "hand": [10, 11, 12],
     "health": 50,
     "lanes": [0, 0, 0, 0, 0],
+    "playedCards": [15, "empty", "empty", "empty", 16],
     "discard": [13, 14],
-    "inDeck": [15, 16, 17, 18, 19],
+    "inDeck": [17, 18, 19],
     "selectedDeck": 1
   }],
   "deck": [{

@@ -17,6 +17,8 @@ import { Player } from '../player.model'
 
 export class GameComponent implements OnInit {
  players: FirebaseListObservable<any[]>
+ player1: Player = this.players[0]
+ player2: Player = this.players[1]
 
  gameId: string
 
@@ -37,6 +39,7 @@ export class GameComponent implements OnInit {
   cardAttackCard(attacker: Card, target: Card) {
     if (target) {
       target.health -= attacker.attack
+      this.checkWinCondition()
     } else {
       console.log("something went wrong in cardAttackCard")
     }
@@ -45,8 +48,22 @@ export class GameComponent implements OnInit {
   cardAttackPlayer(attacker: Card, player) { //no player type here ATM to keep linter happy
     if (player) {
       player.health -= attacker.attack
+      this.checkWinCondition()
     } else {
       console.log("something went wrong in cardAttackPlayer")
+    }
+  }
+
+  checkWinCondition() {
+    //TODO: figure out how player.playedCards and player.lanes interact? Maybe lanes move to game object?
+    if (this.player1.health <= 0) {
+      //tell player they won/lost
+    } else if (this.player2.health <=0) {
+      //tell player they won/lost
+    } else if (this.player1.inDeck.length < 1 && this.player1.hand.length < 1 && this.player1.playedCards.length < 1) {
+      //tell player they won/lost
+    } else if (this.player2.inDeck.length < 1 && this.player2.hand.length < 1 && this.player2.playedCards.length < 1) {
+      //tell player they won/lost
     }
   }
 
