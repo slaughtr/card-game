@@ -2,6 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
+//services
+import { CardService } from '../card.service'
+
 //models
 import { Card } from '../card.model'
 
@@ -12,11 +15,13 @@ import { Card } from '../card.model'
 })
 
 export class GameComponent implements OnInit {
+ players: FirebaseListObservable<any[]>
+ decks: FirebaseListObservable<any[]>
+ games: FirebaseListObservable<any[]>
+
+  constructor(private cardService: CardService) { }
 
 
-  constructor() { }
-
-  
 
   ngOnInit() {
     //psuedo code, completely untested. Might need to be moved
@@ -27,5 +32,20 @@ export class GameComponent implements OnInit {
     // })
 
   }
+
+  cardAttackCard(attacker: Card, target: Card) {
+    if (target) {
+      target.health -= attacker.attack
+    } else {
+      console.log("something went wrong in cardAttackCard")
+    }
+  }
+
+  cardAttackPlayer(attacker: Card, player: Player) {
+
+  }
+
+
+
 
 }
