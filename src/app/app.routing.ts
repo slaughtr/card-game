@@ -25,3 +25,5 @@ const appRoutes: Routes = [
     component: HelpComponent
   }
 ]
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
