@@ -7,6 +7,7 @@ import { CardService } from '../card.service'
 
 //models
 import { Card } from '../card.model'
+import { Player } from '../player.model'
 
 @Component({
   selector: 'app-game',
@@ -16,21 +17,21 @@ import { Card } from '../card.model'
 
 export class GameComponent implements OnInit {
  players: FirebaseListObservable<any[]>
- decks: FirebaseListObservable<any[]>
- games: FirebaseListObservable<any[]>
+
+ gameId: string
 
   constructor(private cardService: CardService) { }
 
 
 
   ngOnInit() {
+    // this.players = this.dbService.getPlayersByGameId(this.gameId)
     //psuedo code, completely untested. Might need to be moved
-    // this.dbService.players.forEach(player => {
+    // this.players.forEach(player => {
     //   this.dbService.deck[this.dbService.player.selectedDeck].forEach(card => {
       // player.inDeck.push(new Card(card.name, card.health, card.attack, card.special))
     // })
     // })
-
   }
 
   cardAttackCard(attacker: Card, target: Card) {
@@ -41,8 +42,12 @@ export class GameComponent implements OnInit {
     }
   }
 
-  cardAttackPlayer(attacker: Card, player: Player) {
-
+  cardAttackPlayer(attacker: Card, player) { //no player type here ATM to keep linter happy
+    if (player) {
+      player.health -= attacker.attack
+    } else {
+      console.log("something went wrong in cardAttackPlayer")
+    }
   }
 
 
