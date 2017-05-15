@@ -12,9 +12,8 @@ import { CardService } from "./card.service";
 })
 
 export class AppComponent {
-  title = 'app works!';
+  title = 'Carrrd Game';
   cards: FirebaseListObservable<any[]>;
-
 
   constructor(private router: Router, private cardService: CardService) {}
 

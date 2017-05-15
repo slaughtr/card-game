@@ -8,6 +8,24 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { AboutComponent } from './about/about.component';
 import { HelpComponent } from './help/help.component';
+import { BoardComponent } from './board/board.component';
+import { HandComponent } from './hand/hand.component';
+import { DeckComponent } from './deck/deck.component';
+import { LaneComponent } from './lane/lane.component';
+import { CardComponent } from './card/card.component';
+
+import { masterFirebaseConfig } from './api-keys'
+import { AngularFireModule } from 'angularfire2'
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+export const firebaseConfig = {
+  apiKey: masterFirebaseConfig.apiKey,
+  authDomain: masterFirebaseConfig.authDomain,
+  databaseURL: masterFirebaseConfig.databaseURL,
+  storageBucket: masterFirebaseConfig.storageBucket
+}
+
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -15,12 +33,20 @@ import { HelpComponent } from './help/help.component';
     MainPageComponent,
     PlayerDetailComponent,
     AboutComponent,
-    HelpComponent
+    HelpComponent,
+    BoardComponent,
+    HandComponent,
+    DeckComponent,
+    LaneComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
