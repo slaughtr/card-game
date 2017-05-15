@@ -27,6 +27,7 @@ export const firebaseConfig = {
 
 import { routing } from './app.routing';
 import { GameComponent } from './game/game.component';
+import { DiscardComponent } from './discard/discard.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { GameComponent } from './game/game.component';
     DeckComponent,
     LaneComponent,
     CardComponent,
-    GameComponent
+    GameComponent,
+    DiscardComponent
   ],
   imports: [
     BrowserModule,
