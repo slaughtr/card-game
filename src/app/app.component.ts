@@ -17,13 +17,21 @@ export class AppComponent {
 
   ngOnInit(){
     this.authService.getCurrentUser().subscribe(user=>{
-      console.log("get user on init of App", user);
-      if (user === null){
-        this.router.navigate(['login']);
-      } else {
-        this.router.navigate(['']);
-      }
+      this.user = user;
+      console.log("on init of App",this.user);
     })
+  }
+
+  login(){
+    this.authService.loginWithGoogle();
+    this.router.navigate(['dashboard']);
+    console.log(this.user);
+  }
+
+  logout(){
+    this.authService.logoutWithGoogle();
+    this.user=null;
+    this.router.navigate(['']);
   }
 
   goToPlayerDetailPage(currentPlayer) {

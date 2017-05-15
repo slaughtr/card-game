@@ -10,10 +10,6 @@ import {AuthService} from './providers/auth.service';
 import { CardService } from './card.service'
 import { AppComponent } from './app.component';
 import {RouterModule, Routes} from '@angular/router';
-
-
-import { LoginPageComponent } from './login-page/login-page.component';
-
 import { MainPageComponent } from './main-page/main-page.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { AboutComponent } from './about/about.component';
@@ -25,8 +21,8 @@ import { LaneComponent } from './lane/lane.component';
 import { CardComponent } from './card/card.component';
 import { routing } from './app.routing';
 import { GameComponent } from './game/game.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { DiscardComponent } from './discard/discard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export const firebaseConfig = {
@@ -39,7 +35,6 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
     MainPageComponent,
     PlayerDetailComponent,
     AboutComponent,
@@ -51,7 +46,7 @@ export const firebaseConfig = {
     CardComponent,
     GameComponent,
     DiscardComponent,
-    NavbarComponent
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
