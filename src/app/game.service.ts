@@ -13,8 +13,8 @@ export class GameService {
     return this.games;
   }
 
-  getGameById(deckId: string) {
-    return this.database.object('games/' + deckId);
+  getGameById(gameId: string) {
+    return this.database.object('games/' + gameId);
   }
 
 }
