@@ -32,6 +32,11 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth'
 import {AuthService} from './providers/auth.service';
 import { masterFirebaseConfig } from './api-keys';
+import { Lane1Component } from './lane1/lane1.component';
+import { Lane2Component } from './lane2/lane2.component';
+import { Lane3Component } from './lane3/lane3.component';
+import { Lane4Component } from './lane4/lane4.component';
+import { Lane5Component } from './lane5/lane5.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -54,7 +59,12 @@ export const firebaseConfig = {
     CardComponent,
     GameComponent,
     DiscardComponent,
-    DashboardComponent
+    DashboardComponent,
+    Lane1Component,
+    Lane2Component,
+    Lane3Component,
+    Lane4Component,
+    Lane5Component
   ],
   imports: [
     BrowserModule,
