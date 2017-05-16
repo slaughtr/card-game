@@ -28,15 +28,15 @@ TODO
   + Put things in it
   +
 + Board
-  + Layout
+  + ~~Layout~~
   + Load in deck
   + Load in lane
   + Load in hand
   + Load in Card
   +
 + Card
-  + Layout of:
-  + Card info (attack, health, special, name)
+  + ~~Layout of:~~
+  + ~~Card info (attack, health, special, name)~~
   + Eventually art
   +
 + Deck
@@ -67,7 +67,7 @@ TODO
   +
 + Main-page
   + Contains welcome messages
-  + User logs in here
+  + ~~User logs in here~~
   + Links to play game, etc
   +
 + Player-detail
@@ -77,10 +77,10 @@ TODO
 
 ### Services
 + Database
-  + Handle all database calls/updates
+  + ~~Handle all database calls/updates~~
   +
 + Auth
-  + Handle all authorization
+  + ~~Handle all authorization~~
   + Create/update/maybe delete players
   +
 + ???
