@@ -28,8 +28,8 @@ const appRoutes: Routes = [
     component: HelpComponent
   },
   {
-  path:'dashboard',
-  component: DashboardComponent
+    path:'dashboard',
+    component: DashboardComponent
   },
   {
     path:'board',

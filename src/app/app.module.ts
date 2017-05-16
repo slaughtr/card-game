@@ -11,6 +11,7 @@ import { CardService } from './card.service'
 import { PlayerService } from './player.service'
 import { HandService } from './hand.service'
 import { routing } from './app.routing';
+import { GameService } from './game.service';
 
 //components
 import { MainPageComponent } from './main-page/main-page.component';
@@ -76,7 +77,7 @@ export const firebaseConfig = {
     routing,
 
   ],
-  providers: [AuthService, CardService, AuthGuard, PlayerService, HandService],
+  providers: [AuthService, CardService, AuthGuard, PlayerService, HandService, GameService],
   bootstrap: [AppComponent]
 })
 

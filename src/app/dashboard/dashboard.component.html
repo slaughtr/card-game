@@ -1,3 +1,9 @@
 <h1>Game Init</h1>
 
+<div>
+  <h1>List Games</h1>
+  <div *ngFor="let game of games | async">
+    <h3>{{game.$key}}</h3>
+  </div>
+</div>
 <div id="init-game" (click)="initGame(player)">Start A New Game</div>

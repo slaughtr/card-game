@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router, private gameService: GameService) { }
 
   initGame(player) {
-    this.router.navigate(['gametime', player.$key]);
+    this.router.navigate(['game', player.$key]);
     // isActive: boolean, hasStarted: boolean, player1:any, player2:any, turn: number
     // var newGame: Game = new Game(isActive, hasStarted, player1, player2, turn);
     // this.gameService.addGame(newGame);
@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.games = this.gameService.getGames();
+    console.log("dash games: "+this.games);
   }
 
 }
