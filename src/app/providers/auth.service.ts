@@ -7,21 +7,27 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
-  loggedIn: boolean;
+  loggedIn: boolean = false;
   constructor(public afAuth: AngularFireAuth) {
     this.user = afAuth.authState;
   }
 
   loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    this.loggedIn = true;
   }
 
   logoutWithGoogle() {
     this.afAuth.auth.signOut();
+    this.loggedIn = false;
   }
 
   getCurrentUser(){
     return this.user;
+  }
+
+  isLoggedIn(){
+    return this.loggedIn;
   }
 
 }
