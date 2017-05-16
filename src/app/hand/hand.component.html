@@ -1,11 +1,6 @@
-<!-- <div class="hand">
+<div class="hand">
 
-  <div *ngFor="card of hand | async" class="cardInHand">
+  <p *ngFor="let card of playerHand"> {{card.name}} </p>
 
-    <img src={{card.?imageURL}}>
-    <p class="cardInHandAttack">{{card?.attack}}</p>
-    <p class="cardInHandHealth">{{card?.health}}</p>
 
-  </div>
-
-</div> -->
+</div>

@@ -5,6 +5,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 export class PlayerService {
   players: FirebaseListObservable<any[]>;
 
+
   constructor(private database: AngularFireDatabase) {
     this.players = database.list('players');
   }
@@ -16,5 +17,11 @@ export class PlayerService {
   getPlayerById(playerId: string) {
     return this.database.object('players/' + playerId);
   }
+
+  getPlayerDeck(playerId: string) {
+    return this.database.object('players/' + playerId + '/inDeck');
+  }
+
+
 
 }
