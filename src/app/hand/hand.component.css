@@ -1,0 +1,53 @@
+.card {
+  float: left;
+  background-color: burlywood;
+  position: relative;
+  border: 3px solid #432;
+  border-radius: 4px 4px 4px 4px;
+  /*min-width: 130px;*/
+  width: 20%;
+  height:100%;
+}
+
+.card p {padding:0;margin:0;z-index: 10;position: relative;}
+.card .cardStats {z-index: 10;background-color: burlywood;position: absolute;bottom:0;font-weight: 900;}
+
+.card:after {
+  position: absolute;
+  left:0;right:0;top:0;bottom:0;
+  margin:auto;
+  width:100%;
+  z-index:0;
+  opacity: .3;
+  background-image: url('https://vignette3.wikia.nocookie.net/scribblenauts/images/f/fc/Wizard_Male.png');
+  background-size: contain;
+  background-repeat:no-repeat;
+  background-position:4px;
+  content:'';
+}
+
+.cardName {
+  z-index: 1;
+  display: block;
+  color: white;
+  z-index: 2;
+}
+
+.cardHealth {
+  z-index: 1;
+  display: block;
+  color: green;
+  z-index: 2;
+}
+
+.cardAttack {
+  z-index: 1;
+  display: block;
+  color: red;
+  z-index: 2;
+}
+
+.hand {
+  position: relative;
+  height:100%;
+}

@@ -1,6 +1,13 @@
 <div class="hand">
 
-  <p *ngFor="let card of playerHand"> {{card.name}} </p>
+  <div *ngFor="let card of playerHand" class="card">
+    <p class="cardName">{{card.name}}</p>
+    <br>
+    <div class='cardStats'>
+      <span class="cardHealth"><small>H:</small>{{card.health}}</span>
+      <span class="cardAttack"><small>A:</small>{{card.attack}}</span>
+    </div>
+  </div>
 
 
 </div>
