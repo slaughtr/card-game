@@ -8,6 +8,8 @@ import {AuthGuard} from './providers/auth.guard';
 
 //services, etc
 import { CardService } from './card.service'
+import { PlayerService } from './player.service'
+import { HandService } from './hand.service'
 import { routing } from './app.routing';
 
 //components
@@ -64,7 +66,7 @@ export const firebaseConfig = {
     routing,
 
   ],
-  providers: [AuthService, CardService, AuthGuard],
+  providers: [AuthService, CardService, AuthGuard, PlayerService, HandService],
   bootstrap: [AppComponent]
 })
 
