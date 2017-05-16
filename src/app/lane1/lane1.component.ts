@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, AfterContentInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterContentInit, AfterViewInit, Renderer2 } from '@angular/core';
+import { PlayCardService } from '../play-card.service'
 
 declare var jQuery: any;
 
@@ -13,19 +14,28 @@ export class Lane1Component implements OnInit {
   currentLane
   laneClass: string
 
-  constructor() { }
+  constructor(private renderer: Renderer2, private playCardService: PlayCardService) { }
 
   ngOnInit() {
+    jQuery('.pickLaneButton').hide()
+    this.playCardService.playCardClickListener.subscribe(result => {
+      console.log(result)
+      if (result !== undefined) {
+        jQuery('.pickLaneButton').show()
+      } else if (result === undefined) {
+        jQuery('.pickedLaneButton').hide()
+      }
+    })
+
   }
 
-  selectThisLane() {
-    console.log("click! " + '.lane1')
+  pickLane(lane) {
     if (jQuery('.lane1').hasClass('selected')) {
       jQuery('.lane1').removeClass('selected')
     } else {
-
       jQuery('.lane1').addClass('selected')
     }
+    this.playCardService.playCardInLane()
   }
 
   ngAfterViewInit() {
