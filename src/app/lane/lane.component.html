@@ -1,3 +1,6 @@
-<p>{{lane}}</p>
-<span class="lane"></span>
-<!-- <p>asdf</p> -->
+<div (click)="selectThisLane()" class="laneDiv">
+
+  <p>{{lane}}</p>
+  <span class="lane{{lane}}"></span>
+
+</div>
