@@ -7,16 +7,15 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
-  loggedIn: boolean = false;
   constructor(public afAuth: AngularFireAuth) {
     this.user = afAuth.authState;
   }
 
   loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    this.loggedIn = true;
     this.user.subscribe(user => {
       if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
         var ref = firebase.database().ref('/users');
         ref.once('value', (snapshot) => {
           if (!snapshot.hasChild(user.uid)) {
@@ -33,8 +32,8 @@ export class AuthService {
   }
 
   logoutWithGoogle() {
+    localStorage.clear();
     this.afAuth.auth.signOut();
-    this.loggedIn = false;
   }
 
   getCurrentUser(){
@@ -42,7 +41,7 @@ export class AuthService {
   }
 
   isLoggedIn(){
-    return this.loggedIn;
+    return this.user;
   }
 
 }

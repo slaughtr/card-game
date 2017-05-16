@@ -11,14 +11,14 @@ import {Router} from '@angular/router';
 
 export class AppComponent {
   title = 'Carrrd Game';
-  user: any = null;
+  user; 
+
 
   constructor (private authService: AuthService, private router: Router){}
 
   ngOnInit(){
     this.authService.getCurrentUser().subscribe(user=>{
       this.user = user;
-      // console.log("on init of App",this.user);
     })
   }
 
@@ -30,7 +30,6 @@ export class AppComponent {
 
   logout(){
     this.authService.logoutWithGoogle();
-    this.user=null;
     this.router.navigate(['']);
   }
 
