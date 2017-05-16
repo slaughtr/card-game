@@ -3,7 +3,11 @@
   <p>{{lane}}</p>
   <span class="lane1"></span>
 
+  <p>{{cardInLane?.name}}</p>
+
 </div>
 
+<div class="pickLaneButton">
 
-<button class="pickLaneButton" (click)="pickLane(lane)">Pick This Lane</button>
+  <button (click)="pickLane(lane)">Pick This Lane</button>
+</div>

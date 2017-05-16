@@ -22,13 +22,11 @@ export class HandComponent implements OnInit {
   player;
   playerHand: any[] =[];
 
-
   constructor(private playerService: PlayerService, private cardService: CardService, private handService: HandService, private playCardService: PlayCardService) { }
 
   ngOnInit() {
     let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
       this.player = player;
-
       this.player.hand.forEach(card => {
         this.cardService.getCardById(card).subscribe(card => {
           this.playerHand.push(card);
