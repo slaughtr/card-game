@@ -7,7 +7,7 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
-
+  loggedIn: boolean;
   constructor(public afAuth: AngularFireAuth) {
     this.user = afAuth.authState;
   }
@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   getCurrentUser(){
-    console.log("in the service",this.user);
     return this.user;
   }
+
 }

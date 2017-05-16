@@ -23,7 +23,7 @@ import { routing } from './app.routing';
 import { GameComponent } from './game/game.component';
 import { DiscardComponent } from './discard/discard.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import {AuthGuard} from './providers/auth.guard';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -58,7 +58,7 @@ export const firebaseConfig = {
     routing,
 
   ],
-  providers: [AuthService, CardService],
+  providers: [AuthService, CardService, AuthGuard],
   bootstrap: [AppComponent]
 })
 
