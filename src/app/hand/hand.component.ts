@@ -21,7 +21,7 @@ export class HandComponent implements OnInit {
   ngOnInit() {
     let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
       this.player = player;
-      console.log("player in hand.comp",player);
+      // console.log("player in hand.comp",player);
     //  this.player.hand
       this.player.hand.forEach(card => {
       this.cardService.getCardById(card).subscribe(card => {
@@ -29,7 +29,7 @@ export class HandComponent implements OnInit {
       })
       })
     });
-    console.log("playerHand", this.playerHand);
+    // console.log("playerHand", this.playerHand);
   }
 
 }

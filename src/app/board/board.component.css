@@ -161,3 +161,8 @@
   grid-row-end: 9;
   border: solid red 1px;
 }
+
+
+app-lane {
+  border: 1px solid black;
+}

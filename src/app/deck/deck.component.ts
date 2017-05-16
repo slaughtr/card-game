@@ -18,7 +18,7 @@ player;
   ngOnInit() {
     let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
       this.player = player;
-      console.log(player);
+      // console.log(player);
     });
   }
 

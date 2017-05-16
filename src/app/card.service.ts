@@ -15,7 +15,7 @@ export class CardService {
 
   getCardById(cardId: string) {
     let test = this.database.object('card/' + cardId);
-    console.log(test);
+    // console.log(test);
     return test;
   }
 
