@@ -15,6 +15,21 @@ export class AuthService {
   loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     this.loggedIn = true;
+    this.user.subscribe(user => {
+      if (user) {
+        var ref = firebase.database().ref('/users');
+        ref.once('value', (snapshot) => {
+          if (!snapshot.hasChild(user.uid)) {
+            var newUser = {
+              displayName: user.displayName,
+              email: user.email,
+              photoURL: user.photoURL
+            }
+            ref.child(user.uid).set(newUser);
+          }
+        });
+      }
+    })
   }
 
   logoutWithGoogle() {
