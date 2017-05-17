@@ -3,7 +3,7 @@
   <p>{{lane}}</p>
 
   <!-- need to change this (using ngIf?) so that each lane doesn't show picked card's name every time -->
-  <p>{{(this.playCardService.cardToPlay)?.name}}</p>
+  <p *ngIf="this.playCardService">{{(this.playCardService.cardToPlay)?.name}}</p>
 
 </div>
 
