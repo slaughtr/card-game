@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LaneComponent } from './lane.component';
+import { EnLane1Component } from './en-lane1.component';
 
-describe('LaneComponent', () => {
-  let component: LaneComponent;
-  let fixture: ComponentFixture<LaneComponent>;
+describe('EnLane1Component', () => {
+  let component: EnLane1Component;
+  let fixture: ComponentFixture<EnLane1Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LaneComponent ]
+      declarations: [ EnLane1Component ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LaneComponent);
+    fixture = TestBed.createComponent(EnLane1Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

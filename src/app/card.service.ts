@@ -14,9 +14,14 @@ export class CardService {
   }
 
   getCardById(cardId: string) {
-    let test = this.database.object('card/' + cardId);
-    // console.log(test);
-    return test;
+    let card = this.database.object('card/' + cardId);
+    // console.log(card);
+    // if (cardId === 'empty') {
+    //   return null;
+    // } else {
+      return card;
+
+    // }
   }
 
 }

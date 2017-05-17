@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, AfterContentInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import 'rxjs/add/operator/takeUntil';
+import { Subject } from 'rxjs/Subject';
+
+import { PlayCardService } from '../play-card.service'
+import { PlayerService } from '../player.service'
+import { CardService } from '../card.service'
+import { Card } from '../card.model'
 
 declare var jQuery: any;
 
@@ -9,27 +16,39 @@ declare var jQuery: any;
 })
 
 export class Lane3Component implements OnInit {
-  @Input() lane: number;
-  currentLane
-  laneClass: string
+  @Input() lane: number
+  cardInLane
+  isThisLaneOccupied: Subject<void> = new Subject<void>();
+  player
 
-  constructor() { }
+  constructor(private playCardService: PlayCardService, private playerService: PlayerService, private cardService: CardService) { }
 
   ngOnInit() {
-  }
-
-  selectThisLane() {
-    console.log("click! " + '.lane3')
-    if (jQuery('.lane3').hasClass('selected')) {
-      jQuery('.lane3').removeClass('selected')
+    jQuery('.pickLaneButton').hide()
+    if (!this.cardInLane) {
+      jQuery('.pickLaneButton').show()
     } else {
-
-      jQuery('.lane3').addClass('selected')
+      jQuery('.pickLaneButton').hide()
     }
+    this.playerService.getPlayerById("1").subscribe((player)=> {
+      this.player = player;
+      if (typeof player.playedCards[2] === 'number') {
+        this.cardService.getCardById(this.player.playedCards[2]).subscribe(card => {
+          this.cardInLane = card
+        })
+      } else {
+        this.cardInLane = player.playedCards[2]
+      }
+    })
   }
 
-  ngAfterViewInit() {
-
+  pickLane() {
+    if (jQuery('.lane1').hasClass('selected')) {
+      jQuery('.lane1').removeClass('selected')
+    } else {
+      jQuery('.lane1').addClass('selected')
+    }
+    this.playCardService.playCardInLane3()
   }
 
 }

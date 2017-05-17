@@ -29,9 +29,9 @@ TODO
   +
 + Board
   + ~~Layout~~
-  + Load in deck
-  + Load in lane
-  + Load in hand
+  + ~~Load in deck~~
+  + ~~Load in lane~~
+  + ~~Load in hand~~
   + Load in Card
   +
 + Card
@@ -54,16 +54,16 @@ TODO
   +
 + Hand
   + Populate with draws from deck and energy 'pile'
-  + Remove cards when they are played
-  + Tied to player object
+  + ~~Remove cards when they are played~~
+  + ~~Tied to player object~~
   +
 + Help
   + Contain how to play info
   +
 + Lane
-  + May need a model/object in DB
-  + Assignable to type (shapes? colors?)
-  + Holds card object when card played
+  + ~~May need a model/object in DB~~
+  + ~~Assignable to type (shapes? colors?)~~ NIXED IDEA
+  + ~~Holds card object when card played~~
   +
 + Main-page
   + Contains welcome messages
@@ -87,8 +87,8 @@ TODO
 
 
 ### Models
-+ Card
-  + Used to populate player deck via game component
++ ~~Card~~
+  + ~~Used to populate player deck via game component~~
   + Other potentials?
   +
 + Game
@@ -102,8 +102,8 @@ TODO
 
 ### Mechanics
 + Lanes
-  + Cannot play card unless lane has been 'typed' ('types' drawn from random seperate pile each turn, does not affect player drawing from deck)
-  + Can only play card of same 'type' in 'typed' lane, unless lane is 'typed' to allow any card
+  + ~~Cannot play card unless lane has been 'typed' ('types' drawn from random seperate pile each turn, does not affect player drawing from deck)~~
+  + ~~Can only play card of same 'type' in 'typed' lane, unless lane is 'typed' to allow any card~~
   + Card in lane always attacks lane across. If no card, attacks enemy mothership
   +
 + Cards
@@ -115,25 +115,25 @@ TODO
   + Defending:
     + Not much to say here
     + (eventually) "specials" may involve dodge/damage reduction
-  + "Types":
-    + "Types" could be shapes (circle, square, triangle)
-    + Could be based on selected deck (fire wizard, water wizard, sword pirate, gun pirate, etc)
-    + Randomly selected and given to each player per turn (not influencing normal deck draws)
-    + Should be a "neutral" type that will allow ANY card to be played in that lane
+  + ~~"Types":~~
+    + ~~"Types" could be shapes (circle, square, triangle)~~
+    + ~~Could be based on selected deck (fire wizard, water wizard, sword pirate, gun pirate, etc)~~
+    + ~~Randomly selected and given to each player per turn (not influencing normal deck draws)~~
+    + ~~Should be a "neutral" type that will allow ANY card to be played in that lane~~
 + Deck
   + Drawing:
     + Deck is randomized at beginning of game/random card drawn
     + One card drawn from deck to hand each turn
   + Building:
-    + For now, deck is built from pre-built deck, depending on player picking pirates or wizards
+    + ~~For now, deck is built from pre-built deck, depending on player picking pirates or wizards~~
     + Would like in the future to have a larger set of cards for a player to build a deck from, and actually collect cards to expand
 
 
 THINGS TO CONSIDER
 ======
-+ Lanes may need to be included in game model/DB to keep track of typing and what card is played there
++ ~~Lanes may need to be included in game model/DB to keep track of typing and what card is played there~~
 + What "specials" can we incorporate?
-+ Drag/drop cards vs click to place?
++ ~~Drag/drop cards vs click to place?~~ Click to place wins
 + Safely manipulating DB values (IE making new card objects per game vs using the cards from DB to prevent permanent changes).
   + Player
   + Lane

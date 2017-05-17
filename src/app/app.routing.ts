@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BoardComponent } from './board/board.component';
 import { AuthGuard } from './providers/auth.guard';
 import { GameComponent } from './game/game.component';
+import { DeckComponent } from './deck/deck.component';
 
 const appRoutes: Routes = [
   {
@@ -28,14 +29,16 @@ const appRoutes: Routes = [
     component: HelpComponent
   },
   {
-  path:'dashboard',
-  component: DashboardComponent,
-  canActivate: [AuthGuard]
-
+    path:'dashboard',
+    component: DashboardComponent
   },
   {
     path:'board',
     component: BoardComponent
+  },
+  {
+    path:'deck',
+    component: DeckComponent
   },
   {
     path:'game/:id',

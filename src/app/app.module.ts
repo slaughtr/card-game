@@ -7,11 +7,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './providers/auth.guard';
 
 //services, etc
-import { CardService } from './card.service'
-import { PlayerService } from './player.service'
-import { HandService } from './hand.service'
-import { PlayCardService } from './play-card.service'
-import { GameService } from './game.service'
+import { CardService } from './card.service';
+import { PlayerService } from './player.service';
+import { HandService } from './hand.service';
+import { PlayCardService } from './play-card.service';
+import { GameService } from './game.service';
+import { DeckService } from './deck.service';
 import { routing } from './app.routing';
 
 //components
@@ -22,11 +23,20 @@ import { HelpComponent } from './help/help.component';
 import { BoardComponent } from './board/board.component';
 import { HandComponent } from './hand/hand.component';
 import { DeckComponent } from './deck/deck.component';
-import { LaneComponent } from './lane/lane.component';
 import { CardComponent } from './card/card.component';
 import { GameComponent } from './game/game.component';
 import { DiscardComponent } from './discard/discard.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { Lane1Component } from './lane1/lane1.component';
+import { Lane2Component } from './lane2/lane2.component';
+import { Lane3Component } from './lane3/lane3.component';
+import { Lane4Component } from './lane4/lane4.component';
+import { Lane5Component } from './lane5/lane5.component';
+import { EnLane1Component } from './en-lane1/en-lane1.component';
+import { EnLane2Component } from './en-lane2/en-lane2.component';
+import { EnLane3Component } from './en-lane3/en-lane3.component';
+import { EnLane4Component } from './en-lane4/en-lane4.component';
+import { EnLane5Component } from './en-lane5/en-lane5.component';
 
 //firebase
 import {AngularFireModule} from 'angularfire2';
@@ -34,11 +44,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth'
 import {AuthService} from './providers/auth.service';
 import { masterFirebaseConfig } from './api-keys';
-import { Lane1Component } from './lane1/lane1.component';
-import { Lane2Component } from './lane2/lane2.component';
-import { Lane3Component } from './lane3/lane3.component';
-import { Lane4Component } from './lane4/lane4.component';
-import { Lane5Component } from './lane5/lane5.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -57,7 +62,6 @@ export const firebaseConfig = {
     BoardComponent,
     HandComponent,
     DeckComponent,
-    LaneComponent,
     CardComponent,
     GameComponent,
     DiscardComponent,
@@ -66,7 +70,12 @@ export const firebaseConfig = {
     Lane2Component,
     Lane3Component,
     Lane4Component,
-    Lane5Component
+    Lane5Component,
+    EnLane1Component,
+    EnLane2Component,
+    EnLane3Component,
+    EnLane4Component,
+    EnLane5Component
   ],
   imports: [
     BrowserModule,
@@ -76,9 +85,8 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     routing,
-
   ],
-  providers: [AuthService, GameService, CardService, AuthGuard, PlayerService, HandService, PlayCardService],
+  providers: [AuthService, GameService, CardService, DeckService, AuthGuard, PlayerService, HandService, PlayCardService],
   bootstrap: [AppComponent]
 })
 
