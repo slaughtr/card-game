@@ -1,21 +1,25 @@
-<div class="playerDeck">
-  <h1> {{player?.name}} </h1>
-
 <div>
-  <div class='player-deck'>
-    <h1>{{pirateDeck}}</h1>
-    <img src="https://s-media-cache-ak0.pinimg.com/originals/74/0b/df/740bdfde43a6acc7dd91ae8818ad4f7d.jpg">
-    <div *ngFor="let card of pirateShuffled">
-      <h2>{{card}}</h2>
-    </div>
-  </div>
-  <div class='player-deck'>
-    <h1>{{wizardDeck}}</h1>
-    <img *ngIf="player?.inDeck?.length > 0" src="https://s-media-cache-ak0.pinimg.com/564x/58/17/85/581785ed38d3e41c25a22163c845abec.jpg">
-    <div *ngFor="let card of wizardShuffled">
-      <h2>{{card}}</h2>
-    </div>
+
+
+  <div class="playerDeck" (click)="drawCard(player)">
+    <img class="num-1" src="../assets/pirateDeck.png">
+    <img class="num-2" src="../assets/pirateDeck.png">
+    <img class="num-3" src="../assets/pirateDeck.png">
+    <img class="num-4" src="../assets/pirateDeck.png">
+    <img class="num-5" src="../assets/pirateDeck.png">
+    <img class="num-6" src="../assets/pirateDeck.png">
+    <img class="num-7" src="../assets/pirateDeck.png">
+    <img class="num-8" src="../assets/pirateDeck.png">
+    <img class="num-9" src="../assets/pirateDeck.png">
+    <img class="num-10" src="../assets/pirateDeck.png">
+
   </div>
 </div>
-  <!-- an else to show a blank spot if player's deck is empty -->
+<!--<div id="pirateDeck" class='player-deck'>
+  <h1>{{pirateDeck.type}}</h1>
+  <img src="https://s-media-cache-ak0.pinimg.com/originals/74/0b/df/740bdfde43a6acc7dd91ae8818ad4f7d.jpg">
 </div>
+<div id="wizardDeck" class='player-deck'>
+  <h1>{{wizardDeck.type}}</h1>
+  <img *ngIf="player?.inDeck?.length > 0" src="https://s-media-cache-ak0.pinimg.com/564x/58/17/85/581785ed38d3e41c25a22163c845abec.jpg">
+</div> -->

@@ -14,3 +14,11 @@ nav h1, ul, li {display:inline-block;}
 nav ul {float:right;}
 
 #init-game {width:300px;height:200px;}
+
+@for $i from 1 through 10 {
+  .playerDeck img.num-#{$i} {
+    position: absolute;
+    left:#{$i}px;
+    top:#{$i}px;
+  }
+}

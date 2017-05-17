@@ -38,6 +38,7 @@ export class GameComponent implements OnInit {
         this.playerId = urlParameters['id'];
       });
       this.playerToDisplay = this.playerService.getPlayerById(this.playerId);
+      
     }
 
   //   ngOnInit() {
@@ -58,6 +59,17 @@ export class GameComponent implements OnInit {
  //
  //
  //
+
+  // ngOnInit() {
+  //
+  // }
+  //
+  //   this.players.forEach(player => {
+  //     this.dbService.deck[this.dbService.player.selectedDeck].forEach(card => {
+  //     player.inDeck.push(new Card(card.name, card.health, card.attack, card.special))
+  //   })
+  //   })
+
   // ngOnInit() {}
   //   this.players = this.dbService.getPlayersByGameId(this.gameId)
   //   // psuedo code, completely untested. Might need to be moved
@@ -67,6 +79,7 @@ export class GameComponent implements OnInit {
  //    // })
  //    // })
  //  }
+
  //
  //  cardAttackCard(attacker: Card, target: Card) {
  //    if (target) {
