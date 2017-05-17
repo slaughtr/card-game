@@ -19,7 +19,6 @@ export class Lane1Component implements OnInit {
   ngOnInit() {
     jQuery('.pickLaneButton').hide()
     this.playCardService.playCardClickListener.subscribe(result => {
-      console.log(result)
       if (result !== undefined) {
         jQuery('.pickLaneButton').show()
       } else if (result === undefined) {

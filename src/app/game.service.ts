@@ -1,21 +1,36 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Game } from './game.model';
 
 @Injectable()
 export class GameService {
-  games: FirebaseListObservable<any[]>;
+  game: FirebaseObjectObservable<any>;
 
   constructor(private database: AngularFireDatabase) {
-    this.games = database.list('game');
+    this.game = database.object('game');
   }
 
-  getGames() {
-    return this.games;
+  getGame() {
+    return this.game;
   }
 
-  addGame(newGame: Game){
-    this.games.push(newGame);
+  // addGame(newGame: Game){
+  //   this.game.push(newGame);
+  // }
+
+  resetsGame(){
+    let currentGame = this.getGame();
+    currentGame.update({Pirate: "", Wizard: ""});
+  }
+
+  beThePirate(user){
+    let currentGame = this.getGame();
+    currentGame.update({Pirate: user.displayName});
+  }
+
+  beTheWizard(user){
+    let currentGame = this.getGame();
+    currentGame.update({Wizard: user.displayName});
   }
 
   // For V.2.0
