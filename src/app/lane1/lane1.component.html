@@ -1,9 +1,13 @@
 <div class="laneDiv lane1">
 
   <p>{{lane}}</p>
-  <span class="lane1"></span>
+
+  <!-- need to change this (using ngIf?) so that each lane doesn't show picked card's name every time -->
+  <p>{{(this.cardInLane)?.name}}</p>
 
 </div>
 
+<div class="pickLaneButton" *ngIf="!this.cardInLane">
 
-<button class="pickLaneButton" (click)="pickLane(lane)">Pick This Lane</button>
+  <button (click)="pickLane(lane)">Pick This Lane</button>
+</div>

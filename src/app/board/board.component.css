@@ -1,4 +1,4 @@
-.container {
+/*.container {
   display: grid;
   grid-template-columns: 5% 10% 10% 50% 10% 10% 5%;
   grid-template-rows: 5% 15% 5% 20% 10% 20% 5% 15% 5%;
@@ -12,12 +12,13 @@
 .selected {
   background-color: red;
 }
-/* Player 1 Land Area */
 
 .player1-land {
   grid-column-start: 4;
+  /* autoprefixer: off */
   grid-column-end: 5;
   grid-row-start: 6;
+  /* autoprefixer: off */
   grid-row-end: 7;
   border: solid red 1px;
   display: subgrid;
@@ -31,47 +32,57 @@
 
 .player1-subLand-1 {
   grid-column-start: 1;
+  /* autoprefixer: off */
   grid-column-end: 2;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end: 2;
   border: solid purple 1px;
 }
 .player1-subLand-2 {
   grid-column-start: 2;
+  /* autoprefixer: off */
   grid-column-end: 3;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end: 2;
   border: solid purple 1px;
 }
 .player1-subLand-3 {
   grid-column-start: 3;
+  /* autoprefixer: off */
   grid-column-end: 4;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end: 2;
   border: solid purple 1px;
 }
 .player1-subLand-4 {
   grid-column-start: 4;
+  /* autoprefixer: off */
   grid-column-end: 5;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end: 2;
   border: solid purple 1px;
 }
 .player1-subLand-5 {
   grid-column-start: 5;
+  /* autoprefixer: off */
   grid-column-end: 6;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end: 2;
   border: solid purple 1px;
 }
 
 
-/* Player 2 Land Area */
-
 .player2-land {
   grid-column-start: 4;
+  /* autoprefixer: off */
   grid-column-end: 5;
   grid-row-start: 4;
+  /* autoprefixer: off */
   grid-row-end: 5;
   border: solid blue 1px;
 }
@@ -84,55 +95,68 @@
 
 .player2-subLand-1 {
   grid-column-start: 1;
+  /* autoprefixer: off */
   grid-column-end: 2;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end: 2;
   border: solid purple 1px;
 }
 .player2-subLand-2 {
   grid-column-start: 2;
+  /* autoprefixer: off */
   grid-column-end: 3;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end: 2;
   border: solid purple 1px;
 }
 .player2-subLand-3 {
   grid-column-start: 3;
+  /* autoprefixer: off */
   grid-column-end: 4;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end: 2;
   border: solid purple 1px;
 }
 .player2-subLand-4 {
   grid-column-start: 4;
+  /* autoprefixer: off */
   grid-column-end: 5;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end: 2;
   border: solid purple 1px;
 }
 .player2-subLand-5 {
   grid-column-start: 5;
+  /* autoprefixer: off */
   grid-column-end: 6;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end: 2;
   border: solid purple 1px;
 }
 
-/* Player 1 Hand Area */
 
 .player1-hand {
   grid-column-start: 4;
   grid-column-end: 5;
+  /* autoprefixer: off */
   grid-row-start: 8;
   grid-row-end: 9;
+  /* autoprefixer: off */
   border: solid red 1px;
   position: relative;
 }
 .player2-hand {
   grid-column-start: 4;
   grid-column-end: 5;
+  /* autoprefixer: off */
   grid-row-start: 2;
   grid-row-end: 3;
+  /* autoprefixer: off */
   border: solid blue 1px;
 }
 
@@ -140,33 +164,49 @@
 .player2-deck {
   grid-column-start: 6;
   grid-column-end: 7;
+  /* autoprefixer: off */
   grid-row-start: 2;
   grid-row-end: 3;
+  /* autoprefixer: off */
   border: solid blue 1px;
 }
 .player2-ship {
   grid-column-start: 2;
+  /* autoprefixer: off */
   grid-column-end: 3;
   grid-row-start: 2;
+  /* autoprefixer: off */
   grid-row-end: 3;
   border: solid blue 1px;
 }
 .player1-deck {
   grid-column-start: 6;
+  /* autoprefixer: off */
   grid-column-end: 7;
   grid-row-start: 8;
   grid-row-end: 9;
+  /* autoprefixer: off */
   border: solid red 1px;
 }
 .player1-ship {
   grid-column-start: 2;
+  /* autoprefixer: off */
   grid-column-end: 3;
   grid-row-start: 8;
+  /* autoprefixer: off */
   grid-row-end: 9;
   border: solid red 1px;
 }
 
-
+.discard-pile {
+  grid-column-start: 2;
+  /* autoprefixer: off */
+  grid-column-end: 3;
+  grid-row-start: 5;
+  /* autoprefixer: off */
+  grid-row-end: 6;
+  border: solid purple 1px;
+}
 app-lane {
   border: 1px solid black;
-}
+}*/

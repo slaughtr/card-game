@@ -7,11 +7,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './providers/auth.guard';
 
 //services, etc
-import { CardService } from './card.service'
-import { PlayerService } from './player.service'
-import { HandService } from './hand.service'
-import { PlayCardService } from './play-card.service'
-import { GameService } from './game.service'
+import { CardService } from './card.service';
+import { PlayerService } from './player.service';
+import { HandService } from './hand.service';
+import { PlayCardService } from './play-card.service';
+import { GameService } from './game.service';
+import { DeckService } from './deck.service';
 import { routing } from './app.routing';
 
 //components
@@ -76,9 +77,8 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     routing,
-
   ],
-  providers: [AuthService, GameService, CardService, AuthGuard, PlayerService, HandService, PlayCardService],
+  providers: [AuthService, GameService, CardService, DeckService, AuthGuard, PlayerService, HandService, PlayCardService],
   bootstrap: [AppComponent]
 })
 
