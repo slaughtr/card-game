@@ -14,6 +14,10 @@ export class PlayerService {
     this.game = database.object('game');
   }
 
+  getPirateDeck() {
+    return this.database.object('game/Pirate');
+  }
+
   getGame() {
     return this.game;
   }
@@ -32,10 +36,11 @@ export class PlayerService {
 
   savePlayerDeck(deck) {
     console.log('ding')
-    let currentGame = this.getGame();
+    let pirateDeck = this.getPirateDeck();
+    console.log("pirateDeck",pirateDeck);
 
 
-      currentGame.update({Deck: deck});
+      pirateDeck.update({Deck: deck});
     }
 
 
