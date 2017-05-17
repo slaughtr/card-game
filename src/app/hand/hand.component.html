@@ -1,6 +1,6 @@
 <div class="hand">
 
-  <div *ngFor="let card of playerHand" class="card">
+  <div *ngFor="let card of playerHand" class="card" (click)="selectCard(card)">
     <p class="cardName">{{card.name}}</p>
     <br>
     <div class='cardStats'>

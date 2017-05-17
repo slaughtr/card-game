@@ -10,6 +10,7 @@ import {AuthGuard} from './providers/auth.guard';
 import { CardService } from './card.service'
 import { PlayerService } from './player.service'
 import { HandService } from './hand.service'
+import { PlayCardService } from './play-card.service'
 import { routing } from './app.routing';
 import { GameService } from './game.service';
 
@@ -77,7 +78,11 @@ export const firebaseConfig = {
     routing,
 
   ],
+<<<<<<< HEAD
   providers: [AuthService, CardService, AuthGuard, PlayerService, HandService, GameService],
+=======
+  providers: [AuthService, CardService, AuthGuard, PlayerService, HandService, PlayCardService],
+>>>>>>> 4cab0b7b2f381d783d23611b0d75af07691c10cc
   bootstrap: [AppComponent]
 })
 
