@@ -1,50 +1,24 @@
 <div class="container">
-  <div *ngIf="lanes" class="player1-land player1-land-grid">
-    <!-- <div class="player2-subLand-1">
-      <p>Land</p>
-    </div>
-    <div class="player2-subLand-2">
-      <p>Land</p>
-    </div>
-    <div class="player2-subLand-3">
-      <p>Land</p>
-    </div>
-    <div class="player2-subLand-4">
-      <p>Land</p>
-    </div>
-    <div class="player2-subLand-5">
-      <p>Land</p>
-    </div> -->
-    <!-- <app-lane *ngFor="let lane of lanes"></app-lane> -->
-    <app-lane1 [lane]="lanes[0]"></app-lane1>
-    <app-lane2 [lane]="lanes[1]"></app-lane2>
-    <app-lane3 [lane]="lanes[2]"></app-lane3>
-    <app-lane4 [lane]="lanes[3]"></app-lane4>
-    <app-lane5 [lane]="lanes[4]"></app-lane5>
+  <div class="player1-land player1-land-grid">
+    <app-lane1></app-lane1>
+    <app-lane2></app-lane2>
+    <app-lane3></app-lane3>
+    <app-lane4></app-lane4>
+    <app-lane5></app-lane5>
   </div>
   <div class="player2-land player2-land-grid">
-    <div class="player2-subLand-1">
-      <p>asdf</p>
-    </div>
-    <div class="player2-subLand-2">
-      <p>Land</p>
-    </div>
-    <div class="player2-subLand-3">
-      <p>Land</p>
-    </div>
-    <div class="player2-subLand-4">
-      <p>Land</p>
-    </div>
-    <div class="player2-subLand-5">
-      <p>Land</p>
-    </div>
+    <app-en-lane1></app-en-lane1>
+    <app-en-lane2></app-en-lane2>
+    <app-en-lane3></app-en-lane3>
+    <app-en-lane4></app-en-lane4>
+    <app-en-lane5></app-en-lane5>
   </div>
-  <div class="player2-hand">
+  <div class="player2-hand" >
     <p>P2 Hand</p>
   </div>
   <div class="player1-hand">
     <app-hand></app-hand>
-  </div>
+    </div>
   <div class="player2-deck">
     <p>P2 Deck</p>
   </div>
@@ -58,8 +32,13 @@
     <p>P1 Ship</p>
   </div>
 
+  <div class="advance-turn">
+    <button type="button" (click)="advanceTurnSender()">End Turn</button>
+  </div>
+
   <!-- discard -->
   <div class="discard-pile">
     <app-discard></app-discard>
   </div>
 </div>
+<p (click)="getPirateDeck()">Boop</p>

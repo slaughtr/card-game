@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../player.service';
 import { AuthService } from '../providers/auth.service';
 import { DeckService } from '../deck.service';
+import { HandService } from '../hand.service';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
@@ -24,7 +25,7 @@ export class DeckComponent implements OnInit {
   wizardCards;
   wizardShuffled;
 
-  constructor(private playerService: PlayerService, private deckService: DeckService, private database: AngularFireDatabase) { }
+  constructor(private playerService: PlayerService, private handService: HandService, private deckService: DeckService, private database: AngularFireDatabase) { }
 
   ngOnInit() {
     let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
@@ -41,7 +42,6 @@ export class DeckComponent implements OnInit {
       this.wizardShuffled = this.shuffleDeck(this.wizardDeck);
       console.log("end of subscribe");
     });
-
   }
 
   shuffleDeck(deckToShuffle){
@@ -56,6 +56,16 @@ export class DeckComponent implements OnInit {
       initDeck.splice(randomIndex,1);
     }
     return outputDeck;
+  }
+
+  drawCard(playerObj){
+    if(playerObj.type === "wizard"){
+      this.handService.putCardInHand(this.wizardShuffled[0]);
+      this.wizardShuffled.splice(0,1);
+    } else if(playerObj.type === "pirate"){
+      this.handService.putCardInHand(this.wizardShuffled[0]);
+      this.wizardShuffled.splice(0,1);
+    }
   }
 
 }
