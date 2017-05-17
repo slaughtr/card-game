@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 
 export class AppComponent {
   title = 'Carrrd Game';
-  user; 
+  user;
 
 
   constructor (private authService: AuthService, private router: Router){}
@@ -24,8 +24,6 @@ export class AppComponent {
 
   login(){
     this.authService.loginWithGoogle();
-    this.router.navigate(['dashboard']);
-    // console.log(this.user);
   }
 
   logout(){
