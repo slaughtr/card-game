@@ -46,4 +46,8 @@ export class BoardComponent implements OnInit {
     this.playerService.savePlayerDeck(this.pirateDeck);
   }
 
+  advanceTurnSender() {
+    this.gameService.advanceTurn()
+  }
+
 }

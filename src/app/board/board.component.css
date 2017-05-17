@@ -13,6 +13,16 @@
   background-color: red;
 }
 
+.advance-turn {
+  grid-column-start: 6;
+  /* autoprefixer: off */
+  grid-column-end: 7;
+  grid-row-start: 5;
+  /* autoprefixer: off */
+  grid-row-end: 6;
+  border: solid red 1px;
+}
+
 .player1-land {
   grid-column-start: 4;
   /* autoprefixer: off */
