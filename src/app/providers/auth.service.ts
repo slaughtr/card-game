@@ -21,7 +21,7 @@ export class AuthService {
     this.user.subscribe(user => {
       if (user) {
         localStorage.setItem("user", JSON.stringify(user));
-        var ref = firebase.database().ref('/users');
+        var ref = firebase.database().ref('/game/users');
         ref.once('value', (snapshot) => {
           if (!snapshot.hasChild(user.uid)) {
             var newUser = {

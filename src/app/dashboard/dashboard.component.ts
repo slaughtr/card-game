@@ -4,6 +4,7 @@ import { GameComponent } from '../game/game.component';
 import { GameService } from '../game.service';
 import { Game } from '../game.model';
 import { FirebaseListObservable } from 'angularfire2/database';
+import { AuthService } from '../providers/auth.service';
 
 
 @Component({
@@ -12,9 +13,13 @@ import { FirebaseListObservable } from 'angularfire2/database';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  game: any[];
+  game: any;
+  currentUser: any;
+  piratePlayer: string ;
+  wizardPlayer: string ;
 
-  constructor(private router: Router, private gameService: GameService) { }
+
+  constructor(private router: Router, private gameService: GameService, private authService: AuthService) { }
 
   initGame(player) {
     this.router.navigate(['game', player.$key]);
@@ -34,11 +39,28 @@ export class DashboardComponent implements OnInit {
   //
   //   console.log(player)
   // }
+  beThePirate() {
+    this.gameService.beThePirate(this.currentUser);
+    this.router.navigate(["board"]);
+  }
+
+  beTheWizard() {
+    this.gameService.beTheWizard(this.currentUser);
+  }
+
 
   ngOnInit() {
-    let currentGame = this.gameService.getGames().subscribe((game)=> {
+
+    this.authService.getCurrentUser().subscribe(user =>  {
+      this.currentUser = user;
+    })
+
+    // this.gameService.resetsGame();
+
+    let currentGame = this.gameService.getGame().subscribe((game)=> {
       this.game = game;
-      console.log(game)
+      this.piratePlayer = game.Pirate;
+      this.wizardPlayer = game.Wizard;
     });
   }
 }
