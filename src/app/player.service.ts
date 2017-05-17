@@ -37,7 +37,7 @@ export class PlayerService {
 
       currentGame.update({Deck: deck});
     }
-  
+
 
   // checkForPlayers() {
   //   return this.game.object('game');
