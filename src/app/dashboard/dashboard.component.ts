@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
   // }
   beThePirate() {
     this.gameService.beThePirate(this.currentUser);
-    this.router.navigate(["board"]);
+      this.router.navigate(["board"]);
   }
 
   beTheWizard() {
@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
       this.currentUser = user;
     })
 
-    // this.gameService.resetsGame();
+    this.gameService.resetsGame();
 
     let currentGame = this.gameService.getGame().subscribe((game)=> {
       this.game = game;

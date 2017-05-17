@@ -17,7 +17,7 @@ declare var jQuery: any;
 
 export class Lane1Component implements OnInit {
   @Input() lane: number
-  cardInLane: Card
+  cardInLane
   isThisLaneOccupied: Subject<void> = new Subject<void>();
   player
 
@@ -25,35 +25,32 @@ export class Lane1Component implements OnInit {
 
   ngOnInit() {
     jQuery('.pickLaneButton').hide()
-
-        if (!this.cardInLane) {
-            jQuery('.pickLaneButton').show()
-            console.log(this.cardInLane)
-        } else {
-          jQuery('.pickLaneButton').hide()
-        }
-
-
-      this.playerService.getPlayerById("1").subscribe((player)=> {
-        this.player = player;
-        this.cardService.getCardById(player.playedCards[0]).subscribe(card => {
+    if (!this.cardInLane) {
+      jQuery('.pickLaneButton').show()
+    } else {
+      jQuery('.pickLaneButton').hide()
+    }
+    this.playerService.getPlayerById("1").subscribe((player)=> {
+      this.player = player;
+      if (typeof player.playedCards[0] === 'number') {
+        console.log(typeof player.playedCards[0])
+        this.cardService.getCardById(this.player.playedCards[0]).subscribe(card => {
           this.cardInLane = card
-      })
-    });
+          console.log(this.cardInLane)
+        })
+      } else {
+        this.cardInLane = player.playedCards[0]
+      }
+    })
   }
 
-  pickLane(lane) {
+  pickLane() {
     if (jQuery('.lane1').hasClass('selected')) {
       jQuery('.lane1').removeClass('selected')
     } else {
       jQuery('.lane1').addClass('selected')
     }
-    //TODO: add check if lane is occupied, might need to be in play card service/own service? Definitely needs some sort of communication between player.playedCards and player.lanes
-    // if (this.playCardService.cardToPlay) {
-    //   this.playCardService.playCardInLane1()
-    //   this.cardInLane = this.playCardService.cardInLane1
-    //   this.isThisLaneOccupied.next()
-    // }
+    this.playCardService.playCardInLane1()
   }
 
 }

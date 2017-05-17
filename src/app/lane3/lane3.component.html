@@ -1,13 +1,10 @@
-<div class="laneDiv lane1">
+<div class="laneDiv lane1" *ngIf="this.playCardService.isLane3Occupied">
 
-  <p>{{lane}}</p>
-
-  <!-- need to change this (using ngIf?) so that each lane doesn't show picked card's name every time -->
-  <p>{{(this.playCardService.cardToPlay)?.name}}</p>
+  <p>{{this.cardInLane?.name}}</p>
 
 </div>
 
-<div class="pickLaneButton">
+<div class="pickLaneButton" *ngIf="!this.playCardService.isLane3Occupied">
 
-  <button (click)="pickLane(lane)">Pick This Lane</button>
+  <button (click)="this.pickLane()">Pick This Lane</button>
 </div>

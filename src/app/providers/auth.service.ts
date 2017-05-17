@@ -2,13 +2,13 @@ import {Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase,FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
-  loggedIn: boolean;
+
   constructor(public afAuth: AngularFireAuth, public route: Router) {
     this.user = afAuth.authState;
   }
@@ -28,6 +28,7 @@ export class AuthService {
               displayName: user.displayName,
               email: user.email,
               photoURL: user.photoURL
+
             }
             ref.child(user.uid).set(newUser);
           }
@@ -53,5 +54,6 @@ export class AuthService {
   isLoggedIn(){
     return this.user;
   }
+
 
 }

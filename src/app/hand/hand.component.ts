@@ -46,14 +46,13 @@ export class HandComponent implements OnInit {
   }
 
   selectCard(card: Card) {
+    console.log(card)
     this.playCardService.getLaneToPlay(card)
     this.playCardService.playCardClickListener.takeUntil(this.hasCardBeenPlayed).subscribe(result => {
       if (result === "played") {
         //I think this is causing the console errors about old2.dispose when it calls cleanUp?
-        console.log(card + " " + this.playerHand.indexOf(card))
         this.playerHand.splice(this.playerHand.indexOf(card), 1)
         this.cleanUp()
-        console.log('spliced card from playerhand')
       }
     })
   }
