@@ -162,7 +162,13 @@
   border: solid red 1px;
 }
 
-
+.discard-pile {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  border: solid purple 1px;
+}
 app-lane {
   border: 1px solid black;
 }*/
