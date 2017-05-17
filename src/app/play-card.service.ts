@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Card } from './card.model'
 import * as Rx from 'rx'
 
+import { PlayerService } from './player.service'
+
 @Injectable()
 export class PlayCardService {
   cardToPlay: Card
@@ -13,28 +15,66 @@ export class PlayCardService {
   isLane4Occupied: boolean = false
   isLane5Occupied: boolean = false
 
-  cardInLane1: Card
-  cardInLane2: Card
-  cardInLane3: Card
-  cardInLane4: Card
-  cardInLane5: Card
+  cardInLane1
+  cardInLane2
+  cardInLane3
+  cardInLane4
+  cardInLane5
+
+  getPlayedCards() {
+    var playedCards = this.playerService.getPlayerPlayedCards('1')
+    playedCards.forEach(cards => {
+      cards.forEach(card => {
+        if (card[0] !== 'empty') {
+          this.isLane1Occupied = true
+        } else {
+          this.isLane1Occupied = false
+        }
+        if (card[1] !== 'empty') {
+          this.isLane2Occupied = true
+        } else {
+          this.isLane2Occupied = false
+        }
+        if (card[2] !== 'empty') {
+          this.isLane3Occupied = true
+        } else {
+          this.isLane3Occupied = false
+        }
+        if (card[3] !== 'empty') {
+          this.isLane4Occupied = true
+        } else {
+          this.isLane4Occupied = false
+        }
+        if (card[4] !== 'empty') {
+          this.isLane5Occupied = true
+        } else {
+          this.isLane5Occupied = false
+        }
+      })
+    })
+  }
+
+  constructor(private playerService: PlayerService) {}
 
   getLaneToPlay(card: Card) {
     this.cardSelectedButNotPlayed = true
     this.cardToPlay = card
     this.playCardClickListener.onNext(this.cardToPlay)
+    // console.log(this.cardToPlay)
   }
 
   playCardInLane1() {
     this.cardSelectedButNotPlayed = false
     this.cardInLane1 = this.cardToPlay
     this.isLane1Occupied = true
+    this.playerService.updatePlayerPlayedCards('1', 0, this.cardInLane1)
+
     this.playCardClickListener.onNext("played")
   }
   playCardInLane2() {
     this.cardSelectedButNotPlayed = false
     this.cardInLane2 = this.cardToPlay
-    console.log(this.cardInLane2)
+    this.playerService.updatePlayerPlayedCards('1', 1, this.cardInLane2)
     this.isLane2Occupied = true
     this.playCardClickListener.onNext("played")
   }
@@ -53,6 +93,7 @@ export class PlayCardService {
   playCardInLane5() {
     this.cardSelectedButNotPlayed = false
     this.cardInLane5 = this.cardToPlay
+    this.playerService.updatePlayerPlayedCards('1', 4, this.cardInLane5)
     this.isLane5Occupied = true
     this.playCardClickListener.onNext("played")
   }
@@ -61,6 +102,5 @@ export class PlayCardService {
     this.playCardClickListener.onNext("played")
   }
 
-  constructor() { }
 
 }

@@ -9,5 +9,5 @@
 
 <div class="pickLaneButton" *ngIf="this.playCardService.cardSelectedButNotPlayed">
 
-  <button (click)="pickLane(lane)">Pick This Lane</button>
+  <button (click)="pickLane()" *ngIf="!this.playCardService.isLane2Occupied">Pick This Lane</button>
 </div>

@@ -35,11 +35,13 @@ export class Lane4Component implements OnInit {
 
   this.playerService.getPlayerById("1").subscribe((player)=> {
     this.player = player;
-    this.cardService.getCardById(player.playedCards[4]).subscribe(card => {
-      if (card.$value !== null) {
+    if (typeof player.playedCards[3] === 'number') {
+      console.log(typeof player.playedCards[3])
+      this.cardService.getCardById(this.player.playedCards[3]).subscribe(card => {
         this.cardInLane = card
-      }
-  })
+        console.log(this.cardInLane)
+      })
+    }
 });
 
   }

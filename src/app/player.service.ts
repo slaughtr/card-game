@@ -25,12 +25,21 @@ export class PlayerService {
   }
 
   getPlayerPlayedCards(playerId: string) {
-    return this.database.object('players/' + playerId + '/playedCards')
+    return this.database.object('players/' + playerId + '/playedCards/')
   }
 
+
+
   updatePlayerPlayedCards(playerId: string, index: number, card: Card) {
+    var indexToUpdate = index
+    console.log(playerId, index, card)
     var cardToUpdate = this.getPlayerPlayedCards(playerId)
-    cardToUpdate.update({ index : card })
+    cardToUpdate.update({ [indexToUpdate] :  {
+      name: card.name,
+      attack: card.attack,
+      health: card.health,
+      special: card.special
+    } })
   }
 
 }

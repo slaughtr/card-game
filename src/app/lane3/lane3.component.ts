@@ -25,26 +25,27 @@ export class Lane3Component implements OnInit {
 
   ngOnInit() {
     jQuery('.pickLaneButton').hide()
-    if (!this.cardInLane) {
-        jQuery('.pickLaneButton').show()
-        // console.log(this.cardInLane)
-    } else {
-      jQuery('.pickLaneButton').hide()
-    }
+    // if (!this.cardInLane) {
+    //     jQuery('.pickLaneButton').show()
+    //     // console.log(this.cardInLane)
+    // } else {
+    //   jQuery('.pickLaneButton').hide()
+    // }
 
 
   this.playerService.getPlayerById("1").subscribe((player)=> {
+    console.log(player.playedCards[2])
     this.player = player;
-    this.cardService.getCardById(player.playedCards[4]).subscribe(card => {
-      if (card.$value !== null) {
+    if (typeof player.playedCards[2] === 'number') {
+      this.cardService.getCardById(this.player.playedCards[2]).subscribe(card => {
         this.cardInLane = card
-      }
-  })
+      })
+    }
 });
 
   }
 
-  pickLane(lane) {
+  pickLane() {
     if (jQuery('.lane1').hasClass('selected')) {
       jQuery('.lane1').removeClass('selected')
     } else {
@@ -52,7 +53,7 @@ export class Lane3Component implements OnInit {
     }
     // jQuery('.pickLaneButton').hide()
     //TODO: add check if lane is occupied, might need to be in play card service/own service? Definitely needs some sort of communication between player.playedCards and player.lanes
-    this.playCardService.playCardInLane()
+    this.playCardService.playCardInLane3()
   }
 
 }
