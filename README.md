@@ -29,9 +29,9 @@ TODO
   +
 + Board
   + ~~Layout~~
-  + Load in deck
+  + ~~Load in deck~~
   + Load in lane
-  + Load in hand
+  + ~~Load in hand~~
   + Load in Card
   +
 + Card
@@ -54,8 +54,8 @@ TODO
   +
 + Hand
   + Populate with draws from deck and energy 'pile'
-  + Remove cards when they are played
-  + Tied to player object
+  + ~~Remove cards when they are played~~
+  + ~~Tied to player object~~
   +
 + Help
   + Contain how to play info
@@ -87,7 +87,7 @@ TODO
 
 
 ### Models
-+ Card
++ ~~Card~~
   + Used to populate player deck via game component
   + Other potentials?
   +
@@ -133,7 +133,7 @@ THINGS TO CONSIDER
 ======
 + Lanes may need to be included in game model/DB to keep track of typing and what card is played there
 + What "specials" can we incorporate?
-+ Drag/drop cards vs click to place?
++ ~~Drag/drop cards vs click to place?~~ Click to place wins
 + Safely manipulating DB values (IE making new card objects per game vs using the cards from DB to prevent permanent changes).
   + Player
   + Lane
