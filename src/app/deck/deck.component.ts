@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../player.service';
 import { AuthService } from '../providers/auth.service';
 import { DeckService } from '../deck.service';
+import { HandService } from '../hand.service';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
@@ -24,7 +25,7 @@ export class DeckComponent implements OnInit {
   wizardCards;
   wizardShuffled;
 
-  constructor(private playerService: PlayerService, private deckService: DeckService, private database: AngularFireDatabase) { }
+  constructor(private playerService: PlayerService, private handService: HandService, private deckService: DeckService, private database: AngularFireDatabase) { }
 
   ngOnInit() {
     let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
@@ -56,6 +57,24 @@ export class DeckComponent implements OnInit {
       initDeck.splice(randomIndex,1);
     }
     return outputDeck;
+  }
+
+  drawCard(playerObj){
+    if(playerObj.type === "wizard"){
+      console.log("wizard deck after draw: "+this.wizardShuffled);
+      console.log("draw from the wizard deck: "+this.wizardShuffled[0]);
+      this.handService.putCardInHand(this.wizardShuffled[0]);
+      this.wizardShuffled.splice(0,1);
+      console.log("wizard deck after draw: "+this.wizardShuffled);
+
+    }
+    console.log(playerObj.type);
+    console.log(playerObj.name+" Deck: "+playerObj.inDeck);
+    console.log(playerObj.name+" Hand: "+playerObj.hand);
+    console.log("next card to draw: "+playerObj.inDeck[0]+" from player"+playerObj.name);
+    var nextCardToDraw = playerObj.inDeck[0];
+    console.log("deckToDrawFrom"+playerObj.name);
+
   }
 
 }

@@ -10,4 +10,9 @@ export class HandService {
   getCardById(cardId: string) {
     return this.cardService.getCardById(cardId)
   }
+
+  putCardInHand(cardObj){
+    // player.hand.push(cardObj);
+    console.log("put this card in your hand"+cardObj);
+  }
 }
