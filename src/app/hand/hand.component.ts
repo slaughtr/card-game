@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as Rx from 'rx'
+import 'rxjs/add/operator/takeUntil';
+import { Subject } from 'rxjs/Subject';
 
 //services
 import { PlayerService } from '../player.service';
@@ -21,14 +24,13 @@ import { Card } from '../card.model'
 export class HandComponent implements OnInit {
   player;
   playerHand: any[] =[];
-
+  hasCardBeenPlayed: Subject<void> = new Subject<void>();
 
   constructor(private playerService: PlayerService, private cardService: CardService, private handService: HandService, private playCardService: PlayCardService) { }
 
   ngOnInit() {
     let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
       this.player = player;
-
       this.player.hand.forEach(card => {
         this.cardService.getCardById(card).subscribe(card => {
           this.playerHand.push(card);
@@ -39,14 +41,20 @@ export class HandComponent implements OnInit {
 
   selectCard(card: Card) {
     this.playCardService.getLaneToPlay(card)
-    this.playCardService.playCardClickListener.subscribe(result => {
+    this.playCardService.playCardClickListener.takeUntil(this.hasCardBeenPlayed).subscribe(result => {
       if (result === "played") {
+        //I think this is causing the console errors about old2.dispose when it calls cleanUp?
+        console.log(card + " " + this.playerHand.indexOf(card))
         this.playerHand.splice(this.playerHand.indexOf(card), 1)
+        this.cleanUp()
         console.log('spliced card from playerhand')
       }
     })
-    // console.log(this.playCardService.cardToPlay)
   }
 
-
+  cleanUp() {
+    //these make the selectCard function stop subscribing after a card is played using takeUntil
+    this.hasCardBeenPlayed.next();
+    this.hasCardBeenPlayed.complete();
+  }
 }

@@ -6,4 +6,5 @@
     <h3>{{game.$key}}</h3>
   </div>
 </div>
-<div id="init-game" (click)="initGame(player)">Start A New Game</div>
+<div id="init-game" *ngIf="!game?.isActive" (click)="initGame()"><button>Start A New Game</button></div>
+
