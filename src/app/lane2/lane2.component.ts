@@ -26,19 +26,21 @@ export class Lane2Component implements OnInit {
 
   ngOnInit() {
     jQuery('.pickLaneButton').hide()
-    if (!this.cardInLane) {
-      jQuery('.pickLaneButton').show()
-      // console.log(this.cardInLane)
-    } else {
-      jQuery('.pickLaneButton').hide()
-    }
-
+    //   if (this.playCardService.cardSelectedButNotPlayed) {
+    //
+    //     jQuery('.pickLaneButton').show()
+    //
+    //   // console.log(this.cardInLane)
+    // } else {
+    //   jQuery('.pickLaneButton').hide()
+    // }
 
     this.playerService.getPlayerById("1").subscribe((player)=> {
       this.player = player;
       this.cardService.getCardById(player.playedCards[1]).subscribe(card => {
         if (card.$value !== null) {
           this.cardInLane = card
+
         }
         // console.log(card)
       })
@@ -52,11 +54,11 @@ export class Lane2Component implements OnInit {
     } else {
       jQuery('.lane1').addClass('selected')
     }
-    //TODO: add check if lane is occupied, might need to be in play card service/own service? Definitely needs some sort of communication between player.playedCards and player.lanes
-    // if (this.playCardService.cardToPlay) {
-    //   this.playCardService.playCardInLane1()
-    //   this.cardInLane = this.playCardService.cardInLane2
-    //   this.isThisLaneOccupied.next()
-    // }
+    if (this.playCardService.cardToPlay) {
+      this.playCardService.playCardInLane2()
+      this.cardInLane = this.playCardService.cardInLane2
+      this.isThisLaneOccupied.next()
+      var cardInArray = this.playerService.getPlayerById('1')
+    }
   }
 }
