@@ -9,6 +9,10 @@ export class DeckService {
     this.decks = database.list('deck');
   }
 
+  shuffleDeck(){
+    
+  }
+
   getDecks() {
     return this.decks;
   }
