@@ -23,18 +23,10 @@ import { HelpComponent } from './help/help.component';
 import { BoardComponent } from './board/board.component';
 import { HandComponent } from './hand/hand.component';
 import { DeckComponent } from './deck/deck.component';
-import { LaneComponent } from './lane/lane.component';
 import { CardComponent } from './card/card.component';
 import { GameComponent } from './game/game.component';
 import { DiscardComponent } from './discard/discard.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
-//firebase
-import {AngularFireModule} from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import {AngularFireAuthModule} from 'angularfire2/auth'
-import {AuthService} from './providers/auth.service';
-import { masterFirebaseConfig } from './api-keys';
 import { Lane1Component } from './lane1/lane1.component';
 import { Lane2Component } from './lane2/lane2.component';
 import { Lane3Component } from './lane3/lane3.component';
@@ -45,6 +37,13 @@ import { EnLane2Component } from './en-lane2/en-lane2.component';
 import { EnLane3Component } from './en-lane3/en-lane3.component';
 import { EnLane4Component } from './en-lane4/en-lane4.component';
 import { EnLane5Component } from './en-lane5/en-lane5.component';
+
+//firebase
+import {AngularFireModule} from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth'
+import {AuthService} from './providers/auth.service';
+import { masterFirebaseConfig } from './api-keys';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -63,7 +62,6 @@ export const firebaseConfig = {
     BoardComponent,
     HandComponent,
     DeckComponent,
-    LaneComponent,
     CardComponent,
     GameComponent,
     DiscardComponent,
