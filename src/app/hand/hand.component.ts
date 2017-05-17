@@ -7,6 +7,7 @@ import { Subject } from 'rxjs/Subject';
 import { PlayerService } from '../player.service';
 import { CardService } from '../card.service';
 import { HandService } from '../hand.service'
+import { AuthService } from '../providers/auth.service';
 import { PlayCardService } from '../play-card.service'
 
 //firebase
@@ -22,13 +23,18 @@ import { Card } from '../card.model'
 })
 
 export class HandComponent implements OnInit {
+  user;
   player;
   playerHand: any[] =[];
   hasCardBeenPlayed: Subject<void> = new Subject<void>();
 
-  constructor(private playerService: PlayerService, private cardService: CardService, private handService: HandService, private playCardService: PlayCardService) { }
+  constructor(private playerService: PlayerService,private authService: AuthService, private cardService: CardService, private handService: HandService, private playCardService: PlayCardService) { }
 
   ngOnInit() {
+    this.authService.getCurrentUser().subscribe(user=>{
+      this.user = user;
+      console.log('current user from handcomponent: '+ user);
+    })
     let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
       this.player = player;
       this.player.hand.forEach(card => {
