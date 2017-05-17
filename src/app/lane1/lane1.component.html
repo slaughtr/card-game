@@ -1,9 +1,9 @@
 <div class="laneDiv lane1">
 
   <p>{{lane}}</p>
-  <span class="lane1"></span>
 
-  <p>{{cardInLane?.name}}</p>
+  <!-- need to change this (using ngIf?) so that each lane doesn't show picked card's name every time -->
+  <p>{{(this.playCardService.cardToPlay)?.name}}</p>
 
 </div>
 

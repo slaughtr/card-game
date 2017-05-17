@@ -1,6 +1,13 @@
-<div (click)="selectThisLane()" class="laneDiv lane3">
+<div class="laneDiv lane1">
 
   <p>{{lane}}</p>
-  <span class="lane3"></span>
 
+  <!-- need to change this (using ngIf?) so that each lane doesn't show picked card's name every time -->
+  <p>{{(this.playCardService.cardToPlay)?.name}}</p>
+
+</div>
+
+<div class="pickLaneButton">
+
+  <button (click)="pickLane(lane)">Pick This Lane</button>
 </div>
