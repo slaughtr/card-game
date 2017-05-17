@@ -10,13 +10,18 @@ import { PlayerService } from '../player.service'
 
 export class BoardComponent implements OnInit {
   player;
+  wizardPlayer;
+  piratePlayer;
   lanes: number[];
   constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
     let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
       this.player = player
-    })
+    }
+
+    // this.playerService.loading
+  )
 
     this.playerService.getPlayerById("1").subscribe(player => this.lanes = player.lanes)
     // this.playerService.getPlayerById("1").subscribe(player => player.lanes.map(lane => this.lanes.push(lane)))
