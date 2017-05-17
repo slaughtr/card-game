@@ -18,19 +18,15 @@ export class AppComponent {
   ngOnInit(){
     this.authService.getCurrentUser().subscribe(user=>{
       this.user = user;
-      console.log("on init of App",this.user);
     })
   }
 
   login(){
     this.authService.loginWithGoogle();
-    this.router.navigate(['dashboard']);
-    console.log(this.user);
   }
 
   logout(){
     this.authService.logoutWithGoogle();
-    this.user=null;
     this.router.navigate(['']);
   }
 
