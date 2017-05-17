@@ -67,7 +67,6 @@ export class PlayCardService {
     this.cardInLane1 = this.cardToPlay
     this.isLane1Occupied = true
     this.playerService.updatePlayerPlayedCards('1', 0, this.cardInLane1)
-
     this.playCardClickListener.onNext("played")
   }
   playCardInLane2() {

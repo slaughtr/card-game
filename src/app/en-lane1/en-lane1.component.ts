@@ -15,11 +15,23 @@ declare var jQuery: any;
 })
 
 export class EnLane1Component implements OnInit {
+  cardInLane
 
-  constructor(private enemyLaneService: EnemyLaneService) { }
+  constructor(private enemyLaneService: EnemyLaneService, private playerService: PlayerService, private cardService: CardService) { }
 
   ngOnInit() {
-    console.log('asdf')
+    this.playerService.getPlayerById("0").subscribe((player)=> {
+      if (typeof player.playedCards[0] === 'number') {
+        console.log(typeof player.playedCards[0])
+        this.cardService.getCardById(player.playedCards[0]).subscribe(card => {
+          this.cardInLane = card
+          console.log(this.cardInLane)
+        })
+      } else {
+        this.cardInLane = player.playedCards[0]
+        console.log(this.cardInLane)
+      }
+    })
   }
 
 }

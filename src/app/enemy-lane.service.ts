@@ -20,9 +20,31 @@ export class EnemyLaneService {
 
   getEnemyLanes() {
     this.playerService.getPlayerPlayedCards('0').subscribe(cards => {
-      cards.forEach(card => {
-        console.log(card)
-      })
+      if (cards[0] !== 'empty') {
+        this.isEnemyLane1Occupied = true
+      } else {
+        this.isEnemyLane1Occupied = false
+      }
+      if (cards[1] !== 'empty') {
+        this.isEnemyLane2Occupied = true
+      } else {
+        this.isEnemyLane2Occupied = false
+      }
+      if (cards[2] !== 'empty') {
+        this.isEnemyLane3Occupied = true
+      } else {
+        this.isEnemyLane3Occupied = false
+      }
+      if (cards[3] !== 'empty') {
+        this.isEnemyLane4Occupied = true
+      } else {
+        this.isEnemyLane4Occupied = false
+      }
+      if (cards[4] !== 'empty') {
+        this.isEnemyLane5Occupied = true
+      } else {
+        this.isEnemyLane5Occupied = false
+      }
     })
   }
 
