@@ -43,6 +43,15 @@ export class GameService {
     currentGame.update({Wizard: user.displayName});
   }
 
+  getDiscard() {
+    return this.database.list('game/Discard/cards');
+  }
+
+  addToDiscard(cardToDiscard) {
+    let currentDiscard = this.getDiscard();
+    currentDiscard.push(cardToDiscard);
+  }
+
   getPlayers() {
     return this.database.object('/players')
   }
