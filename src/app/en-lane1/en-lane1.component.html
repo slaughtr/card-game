@@ -1,3 +1,5 @@
-<p>
-  en-lane1 works!
-</p>
+<div class="laneDiv enlane1" *ngIf="this.enemyLaneService.isLane1Occupied">
+
+  <p>{{this.cardInLane?.name}}</p>
+
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { PlayerService } from '../player.service'
 import { PlayCardService } from '../play-card.service'
+import { EnemyLaneService } from '../enemy-lane.service'
 
 @Component({
   selector: 'app-board',
@@ -12,7 +13,7 @@ import { PlayCardService } from '../play-card.service'
 export class BoardComponent implements OnInit {
   player;
 
-  constructor(private playerService: PlayerService, private playCardService: PlayCardService) { }
+  constructor(private playerService: PlayerService, private playCardService: PlayCardService, private enemyLaneService: EnemyLaneService) { }
   wizardPlayer;
   piratePlayer;
 
@@ -25,6 +26,7 @@ export class BoardComponent implements OnInit {
   )
     //this function loads cards already played on init. Afterwards, players should already be subscribed to the played cards, so not necessary afterwards?
     this.playCardService.getPlayedCards()
+    this.enemyLaneService.getEnemyLanes()
 
   }
 
