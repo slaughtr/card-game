@@ -3,6 +3,8 @@ import 'rxjs/add/operator/takeUntil';
 import { Subject } from 'rxjs/Subject';
 
 import { PlayCardService } from '../play-card.service'
+import { PlayerService } from '../player.service'
+import { CardService } from '../card.service'
 import { Card } from '../card.model'
 
 declare var jQuery: any;
@@ -16,22 +18,29 @@ declare var jQuery: any;
 export class Lane3Component implements OnInit {
   @Input() lane: number;
   cardInLane: Card
+  player
 
 
-  constructor(private playCardService: PlayCardService) { }
+  constructor(private playCardService: PlayCardService, private playerService: PlayerService, private cardService: CardService) { }
 
   ngOnInit() {
     jQuery('.pickLaneButton').hide()
-    this.playCardService.playCardClickListener.subscribe(result => {
-      // console.log(result)
-      if (result) {
-        if (result.hasOwnProperty('health')) {
-          jQuery('.pickLaneButton').show()
-        } else {
-          jQuery('.pickLaneButton').hide()
-        }
+    if (!this.cardInLane) {
+        jQuery('.pickLaneButton').show()
+        // console.log(this.cardInLane)
+    } else {
+      jQuery('.pickLaneButton').hide()
+    }
+
+
+  this.playerService.getPlayerById("1").subscribe((player)=> {
+    this.player = player;
+    this.cardService.getCardById(player.playedCards[4]).subscribe(card => {
+      if (card.$value !== null) {
+        this.cardInLane = card
       }
-    })
+  })
+});
 
   }
 

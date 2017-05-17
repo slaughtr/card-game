@@ -28,7 +28,7 @@ export class Lane1Component implements OnInit {
 
         if (!this.cardInLane) {
             jQuery('.pickLaneButton').show()
-            console.log(this.cardInLane)
+            // console.log(this.cardInLane)
         } else {
           jQuery('.pickLaneButton').hide()
         }
