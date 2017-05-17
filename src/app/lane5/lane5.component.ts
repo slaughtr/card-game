@@ -50,13 +50,7 @@ export class Lane5Component implements OnInit {
     } else {
       jQuery('.lane1').addClass('selected')
     }
-    //TODO: add check if lane is occupied, might need to be in play card service/own service? Definitely needs some sort of communication between player.playedCards and player.lanes
-    // if (this.playCardService.cardToPlay) {
     this.playCardService.playCardInLane5()
-    //   this.cardInLane = this.playCardService.cardInLane1
-    //   this.isThisLaneOccupied.next()
-    // }
-    // console.log('hi')
   }
 
 }

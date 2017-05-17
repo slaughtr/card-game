@@ -17,16 +17,19 @@ declare var jQuery: any;
 
 export class Lane2Component implements OnInit {
   @Input() lane: number
-  cardInLane: Card
+  cardInLane
   isThisLaneOccupied: Subject<void> = new Subject<void>();
   player
-
 
   constructor(private playCardService: PlayCardService, private playerService: PlayerService, private cardService: CardService) { }
 
   ngOnInit() {
     jQuery('.pickLaneButton').hide()
-
+    if (!this.cardInLane) {
+      jQuery('.pickLaneButton').show()
+    } else {
+      jQuery('.pickLaneButton').hide()
+    }
     this.playerService.getPlayerById("1").subscribe((player)=> {
       this.player = player;
       if (typeof player.playedCards[1] === 'number') {
@@ -35,9 +38,10 @@ export class Lane2Component implements OnInit {
           this.cardInLane = card
           console.log(this.cardInLane)
         })
+      } else {
+        this.cardInLane = player.playedCards[1]
       }
-    });
-
+    })
   }
 
   pickLane() {
@@ -46,15 +50,7 @@ export class Lane2Component implements OnInit {
     } else {
       jQuery('.lane1').addClass('selected')
     }
-    // if (this.playCardService.cardToPlay) {
-    //   this.playCardService.playCardInLane2()
-    //   // this.cardInLane = this.playCardService.cardInLane2
-      this.isThisLaneOccupied.next()
-    // }
     this.playCardService.playCardInLane2()
-    console.log(this.player.playedCards)
-    console.log(this.player.hand)
-    console.log(this.cardInLane)
-
   }
+
 }

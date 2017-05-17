@@ -24,34 +24,33 @@ export class PlayCardService {
   getPlayedCards() {
     var playedCards = this.playerService.getPlayerPlayedCards('1')
     playedCards.forEach(cards => {
-      cards.forEach(card => {
-        if (card[0] !== 'empty') {
+        if (cards[0] !== 'empty') {
           this.isLane1Occupied = true
         } else {
           this.isLane1Occupied = false
         }
-        if (card[1] !== 'empty') {
+        if (cards[1] !== 'empty') {
           this.isLane2Occupied = true
         } else {
           this.isLane2Occupied = false
         }
-        if (card[2] !== 'empty') {
+        if (cards[2] !== 'empty') {
           this.isLane3Occupied = true
         } else {
           this.isLane3Occupied = false
         }
-        if (card[3] !== 'empty') {
+        if (cards[3] !== 'empty') {
           this.isLane4Occupied = true
         } else {
           this.isLane4Occupied = false
         }
-        if (card[4] !== 'empty') {
+        if (cards[4] !== 'empty') {
           this.isLane5Occupied = true
         } else {
           this.isLane5Occupied = false
         }
       })
-    })
+    // })
   }
 
   constructor(private playerService: PlayerService) {}
@@ -81,12 +80,14 @@ export class PlayCardService {
   playCardInLane3() {
     this.cardSelectedButNotPlayed = false
     this.cardInLane3 = this.cardToPlay
+    this.playerService.updatePlayerPlayedCards('1', 2, this.cardInLane3)
     this.isLane3Occupied = true
     this.playCardClickListener.onNext("played")
   }
   playCardInLane4() {
     this.cardSelectedButNotPlayed = false
     this.cardInLane4 = this.cardToPlay
+    this.playerService.updatePlayerPlayedCards('1', 3, this.cardInLane4)
     this.isLane4Occupied = true
     this.playCardClickListener.onNext("played")
   }
@@ -97,10 +98,5 @@ export class PlayCardService {
     this.isLane5Occupied = true
     this.playCardClickListener.onNext("played")
   }
-
-  playCardInLane() {
-    this.playCardClickListener.onNext("played")
-  }
-
 
 }
