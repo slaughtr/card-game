@@ -1,7 +1,13 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { PlayerService } from '../player.service'
+
+import { GameService } from '../game.service';
+import { Game } from '../game.model';
+import { AuthService } from '../providers/auth.service';
+
 import { PlayCardService } from '../play-card.service'
+
 
 @Component({
   selector: 'app-board',
@@ -10,6 +16,29 @@ import { PlayCardService } from '../play-card.service'
 })
 
 export class BoardComponent implements OnInit {
+
+  currentUser: any;
+  game: any;
+  playerIsPirate: boolean;
+  pirateDeck: any = [];
+
+  lanes: number[];
+  constructor(private playerService: PlayerService, private authService: AuthService, private gameService: GameService) { }
+
+  ngOnInit() {
+    this.authService.getCurrentUser().subscribe(user =>  {
+      this.currentUser = user;
+
+        });
+      this.gameService.getGame().subscribe((game)=> {
+        this.game = game;
+        if (this.game.Pirate === this.currentUser.displayName){
+          this.playerIsPirate = true;
+        }
+      });
+    this.playerService.getPlayerById("1").subscribe(player => this.lanes = player.lanes)
+    // this.playerService.getPlayerById("1").subscribe(player => player.lanes.map(lane => this.lanes.push(lane)))
+
   player;
 
   constructor(private playerService: PlayerService, private playCardService: PlayCardService) { }
@@ -26,6 +55,18 @@ export class BoardComponent implements OnInit {
     //this function loads cards already played on init. Afterwards, players should already be subscribed to the played cards, so not necessary afterwards?
     this.playCardService.getPlayedCards()
 
+
   }
+  getPirateDeck() {
+    this.pirateDeck = []
+    this.gameService.getPirateDeck().subscribe(deck => {
+        deck.cards.forEach(card=> {
+            this.pirateDeck.push(card);
+      });
+    })
+    this.playerService.savePlayerDeck(this.pirateDeck);
+  }
+
+
 
 }
