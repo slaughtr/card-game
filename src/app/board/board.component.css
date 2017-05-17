@@ -1,4 +1,4 @@
-/*.container {
+.container {
   display: grid;
   grid-template-columns: 5% 10% 10% 50% 10% 10% 5%;
   grid-template-rows: 5% 15% 5% 20% 10% 20% 5% 15% 5%;
@@ -165,4 +165,4 @@
 
 app-lane {
   border: 1px solid black;
-}*/
+}
