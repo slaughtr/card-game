@@ -7,6 +7,7 @@ import { Game } from '../game.model';
 import { AuthService } from '../providers/auth.service';
 
 import { PlayCardService } from '../play-card.service'
+import { EnemyLaneService } from '../enemy-lane.service'
 
 
 @Component({
@@ -41,7 +42,7 @@ export class BoardComponent implements OnInit {
 
   player;
 
-  constructor(private playerService: PlayerService, private playCardService: PlayCardService) { }
+  constructor(private playerService: PlayerService, private playCardService: PlayCardService, private enemyLaneService: EnemyLaneService) { }
   wizardPlayer;
   piratePlayer;
 
@@ -54,6 +55,7 @@ export class BoardComponent implements OnInit {
   )
     //this function loads cards already played on init. Afterwards, players should already be subscribed to the played cards, so not necessary afterwards?
     this.playCardService.getPlayedCards()
+    this.enemyLaneService.getEnemyLanes()
 
 
   }
