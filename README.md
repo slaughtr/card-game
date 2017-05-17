@@ -32,7 +32,7 @@ TODO
   + ~~Load in deck~~
   + ~~Load in lane~~
   + ~~Load in hand~~
-  + Load in Card
+  + ~~Load in Card~~
   +
 + Card
   + ~~Layout of:~~
@@ -40,14 +40,14 @@ TODO
   + Eventually art
   +
 + Deck
-  + Create deck per player based on cards in deck template (in game component?)
-  + Pull cards from deck to hand, removing from deck array
+  + ~~Create deck per player based on cards in deck template (in game component?)~~
+  + ~~Pull cards from deck to hand, removing from deck array~~
   +
 + Discard
-  + Add dead cards to discard pile
+  + ~~Add dead cards to discard pile~~
   +
 + Game
-  + Hold both player objects
+  + ~~Hold both player objects~~
   + Count turns
   + Check win conditions regularly (player health, num cards)
   + This should create player decks/shuffle/etc
