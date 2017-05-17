@@ -6,7 +6,8 @@ import { AboutComponent } from './about/about.component'
 import { HelpComponent } from './help/help.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BoardComponent } from './board/board.component';
-import {AuthGuard} from './providers/auth.guard';
+import { AuthGuard } from './providers/auth.guard';
+import { GameComponent } from './game/game.component';
 
 const appRoutes: Routes = [
   {
@@ -30,10 +31,15 @@ const appRoutes: Routes = [
   path:'dashboard',
   component: DashboardComponent,
   canActivate: [AuthGuard]
+
   },
   {
     path:'board',
     component: BoardComponent
+  },
+  {
+    path:'game/:id',
+    component: GameComponent
   }
 ]
 

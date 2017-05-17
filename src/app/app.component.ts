@@ -11,7 +11,8 @@ import {Router} from '@angular/router';
 
 export class AppComponent {
   title = 'Carrrd Game';
-  user: any = null;
+  user;
+
 
   constructor (private authService: AuthService, private router: Router){}
 

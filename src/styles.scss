@@ -12,3 +12,5 @@ body {padding:0;margin:0;text-align: center;}
 header, main, footer {@include mainWidth;}
 nav h1, ul, li {display:inline-block;}
 nav ul {float:right;}
+
+#init-game {width:300px;height:200px;}

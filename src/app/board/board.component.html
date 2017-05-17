@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="player1-land player1-land-grid">
-    <div class="player2-subLand-1">
+  <div *ngIf="lanes" class="player1-land player1-land-grid">
+    <!-- <div class="player2-subLand-1">
       <p>Land</p>
     </div>
     <div class="player2-subLand-2">
@@ -14,11 +14,17 @@
     </div>
     <div class="player2-subLand-5">
       <p>Land</p>
-    </div>
+    </div> -->
+    <!-- <app-lane *ngFor="let lane of lanes"></app-lane> -->
+    <app-lane1 [lane]="lanes[0]"></app-lane1>
+    <app-lane2 [lane]="lanes[1]"></app-lane2>
+    <app-lane3 [lane]="lanes[2]"></app-lane3>
+    <app-lane4 [lane]="lanes[3]"></app-lane4>
+    <app-lane5 [lane]="lanes[4]"></app-lane5>
   </div>
   <div class="player2-land player2-land-grid">
     <div class="player2-subLand-1">
-      <p>Land</p>
+      <p>asdf</p>
     </div>
     <div class="player2-subLand-2">
       <p>Land</p>
@@ -37,7 +43,7 @@
     <p>P2 Hand</p>
   </div>
   <div class="player1-hand">
-    <p>P1 Hand</p>
+    <app-hand></app-hand>
   </div>
   <div class="player2-deck">
     <p>P2 Deck</p>
@@ -46,7 +52,7 @@
     <p>P2 Ship</p>
   </div>
   <div class="player1-deck">
-    <p>P1 Deck</p>
+    <app-deck></app-deck>
   </div>
   <div class="player1-ship">
     <p>P1 Ship</p>

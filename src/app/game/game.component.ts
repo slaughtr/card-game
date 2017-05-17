@@ -1,21 +1,53 @@
 //Angular services/modules
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 //services
 import { CardService } from '../card.service'
+import { GameService } from '../game.service'
+import { PlayerService } from '../player.service'
 
 //models
 import { Card } from '../card.model'
 import { Player } from '../player.model'
+import { Game } from '../game.model'
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+  styleUrls: ['./game.component.css'],
+  providers: [GameService]
 })
 
 export class GameComponent implements OnInit {
+    playerId: string;
+    playerToDisplay;
+
+    constructor(
+      private route: ActivatedRoute,
+      private location: Location,
+      private gameService: GameService,
+      private playerService: PlayerService
+    ) {}
+
+    ngOnInit(){
+      this.route.params.forEach((urlParameters) => {
+        this.playerId = urlParameters['id'];
+      });
+      this.playerToDisplay = this.playerService.getPlayerById(this.playerId);
+    }
+
+  //   ngOnInit() {
+  //   this.route.params.forEach((urlParameters) => {
+  //     this.memberId = urlParameters['id'];
+  //   });
+  //   this.memberToDisplay = this.memberService.getMemberById(this.memberId);
+  // }
+    // games: Game[];
+  }
  // players: FirebaseListObservable<any[]>
  // player1: Player = this.players[0]
  // player2: Player = this.players[1]
@@ -26,7 +58,7 @@ export class GameComponent implements OnInit {
  //
  //
  //
-  ngOnInit() {}
+  // ngOnInit() {}
  //    // this.players = this.dbService.getPlayersByGameId(this.gameId)
  //    //psuedo code, completely untested. Might need to be moved
  //    // this.players.forEach(player => {
@@ -70,8 +102,3 @@ export class GameComponent implements OnInit {
  //  advanceTurn() {
  //    this.game.turn ++
  //  }
- //
- //
- //
-
-}
