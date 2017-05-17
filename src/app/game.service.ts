@@ -33,6 +33,17 @@ export class GameService {
     currentGame.update({Wizard: user.displayName});
   }
 
+  getDiscard() {
+    return this.database.list('game/Discard/cards');
+  }
+
+  addToDiscard(cardToDiscard) {
+    let currentDiscard = this.getDiscard();
+    currentDiscard.push(cardToDiscard);
+  }
+
+
+
   // For V.2.0
   // getGameById(gameId: string) {
   //   return this.database.object('game/' + gameId);
