@@ -22,6 +22,13 @@ export class PlayerService {
     return this.database.object('players/' + playerId + '/inDeck');
   }
 
+  updateDeck(){
+
+  }
+
+  updateHand(){
+    
+  }
 
 
 }

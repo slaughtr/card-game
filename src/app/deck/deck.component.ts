@@ -42,7 +42,6 @@ export class DeckComponent implements OnInit {
       this.wizardShuffled = this.shuffleDeck(this.wizardDeck);
       console.log("end of subscribe");
     });
-
   }
 
   shuffleDeck(deckToShuffle){
@@ -61,20 +60,12 @@ export class DeckComponent implements OnInit {
 
   drawCard(playerObj){
     if(playerObj.type === "wizard"){
-      console.log("wizard deck after draw: "+this.wizardShuffled);
-      console.log("draw from the wizard deck: "+this.wizardShuffled[0]);
       this.handService.putCardInHand(this.wizardShuffled[0]);
       this.wizardShuffled.splice(0,1);
-      console.log("wizard deck after draw: "+this.wizardShuffled);
-
+    } else if(playerObj.type === "pirate"){
+      this.handService.putCardInHand(this.wizardShuffled[0]);
+      this.wizardShuffled.splice(0,1);
     }
-    console.log(playerObj.type);
-    console.log(playerObj.name+" Deck: "+playerObj.inDeck);
-    console.log(playerObj.name+" Hand: "+playerObj.hand);
-    console.log("next card to draw: "+playerObj.inDeck[0]+" from player"+playerObj.name);
-    var nextCardToDraw = playerObj.inDeck[0];
-    console.log("deckToDrawFrom"+playerObj.name);
-
   }
 
 }
