@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
+import * as firebase from 'firebase/app';
 
 import { Card } from './card.model'
 
@@ -72,29 +73,38 @@ export class PlayerService {
   }
 
   savePlayerDeck(deck) {
-    console.log('ding')
     let pirateDeck = this.getPirateDeck();
-    console.log("pirateDeck",pirateDeck);
-
-
-      pirateDeck.update({Deck: deck});
-    }
-
-
-  // checkForPlayers() {
-  //   return this.game.object('game');
-  // }
+    pirateDeck.update({Deck: deck});
+  }
 
   getPlayerPlayedCards(playerId: string) {
+    return this.database.object('players/' + playerId + '/playedCards/');
+  }
+
+  getEnemyPlayerPlayedCards(playerId: string) {
     return this.database.object('players/' + playerId + '/playedCards/')
   }
 
+  getEnemyPlayerPlayedCardByIndexOnce(playerId: string, index: number) {
+    console.log('index in getEnemyPlayerPlayedCardByIndexOnce'+index)
+    return firebase.database().ref('/players/'+playerId+'/playedCards/'+index).once('value');
+  }
 
+  getEnemyPlayerPlayedCardByIndex(playerId: string, index: number) {
+      return this.database.object('players/' + playerId + '/playedCards/' + index)
+    }
 
+  getPlayerPlayedCardById(playerId: string, cardId: string) {
+    return this.database.object('players/' + playerId + '/playedCards/' + cardId);
+  }
+
+  removePlayerPlayedCard(playerId: string, cardId: string) {
+    var cardToRemove = this.getPlayerPlayedCardById(playerId, cardId);
+    cardToRemove.remove();
+  }
 
   updatePlayerPlayedCards(playerId: string, index: number, card: Card) {
     var indexToUpdate = index
-    console.log(playerId, index, card)
     var cardToUpdate = this.getPlayerPlayedCards(playerId)
     cardToUpdate.update({ [indexToUpdate] :  {
       name: card.name,

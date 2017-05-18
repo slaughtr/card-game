@@ -31,11 +31,16 @@ export class BoardComponent implements OnInit {
     // let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
     //   this.player = player
     // })
-    //this function loads cards already played on init. Afterwards, players should already be subscribed to the played cards, so not necessary afterwards?
+    //this function loads cards already played on init. then, players should already be subscribed to the played cards, so not necessary afterwards?
     this.playCardService.getPlayedCards()
     this.enemyLaneService.getEnemyLanes()
-    console.log('wiz: ' + this.gameService.isWizardTurn)
-    console.log('pir: ' + this.gameService.isPirateTurn)
+    // console.log('wiz: ' + this.gameService.isWizardTurn)
+    // console.log('pir: ' + this.gameService.isPirateTurn)
+    //below for testing
+    this.gameService.playerSelectedDeck = 'wizard'
+    this.gameService.isWizardTurn = true
+    // console.log(this.gameService.playerSelectedDeck)
+    // console.log(this.gameService.isWizardTurn)
   }
 
   getPirateDeck() {
@@ -48,8 +53,44 @@ export class BoardComponent implements OnInit {
     this.playerService.savePlayerDeck(this.pirateDeck);
   }
 
+  endOfTurnAttackRound() {
+    var indexToAttack: number = 0
+    this.playerService.getPlayerPlayedCards("1").subscribe((cards)=> {
+      cards.forEach(card => {
+        var attackingCardAttack = card.attack
+        this.playerService.getEnemyPlayerPlayedCardByIndexOnce('0', indexToAttack).then(value => {
+          let currentIndex = indexToAttack
+          indexToAttack++
+          if (value.val() !== null) {
+            // console.log(value.val().health)
+            let enemyCard = this.playerService.getEnemyPlayerPlayedCardByIndex('0', currentIndex)
+            let enemyCardHealth = value.val().health - attackingCardAttack
+            enemyCard.update({health: enemyCardHealth})
+            if (enemyCardHealth < 1) {
+              this.playerService.removePlayerPlayedCard('0', currentIndex.toString())
+              console.log('think ya killed it?')
+            }
+          } else {
+            console.log('either an error or nothing to attack in opposing lane')
+          }
+        })
+      })
+
+
+    })
+
+  }
+
+
+
   advanceTurnSender() {
-    this.gameService.advanceTurn()
+    if ((this.gameService.playerSelectedDeck === 'pirate' && this.gameService.isPirateTurn) || (this.gameService.playerSelectedDeck === 'wizard' && this.gameService.isWizardTurn)) {
+      this.endOfTurnAttackRound()
+      this.gameService.advanceTurn()
+    } else {
+      console.log('something went wrong in board.component advanceTurnSender')
+      console.log('or maybe its not your turn')
+    }
   }
 
 }
