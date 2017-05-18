@@ -21,16 +21,19 @@ export class EnLane1Component implements OnInit {
 
   ngOnInit() {
     this.playerService.getPlayerById("0").subscribe((player)=> {
-      if (typeof player.playedCards[0] === 'number') {
-        // console.log(typeof player.playedCards[0])
-        this.cardService.getCardById(player.playedCards[0]).subscribe(card => {
-          this.cardInLane = card
+      if (player.playedCards) {
+        if (typeof player.playedCards[0] === 'number') {
+          // console.log(typeof player.playedCards[0])
+          this.cardService.getCardById(player.playedCards[0]).subscribe(card => {
+            this.cardInLane = card
+            // console.log(this.cardInLane)
+          })
+        } else {
+          this.cardInLane = player.playedCards[0]
           // console.log(this.cardInLane)
-        })
-      } else {
-        this.cardInLane = player.playedCards[0]
-        // console.log(this.cardInLane)
+        }
       }
+
     })
   }
 

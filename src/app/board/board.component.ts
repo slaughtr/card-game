@@ -55,8 +55,8 @@ export class BoardComponent implements OnInit {
       this.gameService.advanceTurn()
     } else {
       console.log('something went wrong in board.component advanceTurnSender')
+      console.log('or maybe its not your turn')
     }
-
   }
 
 }

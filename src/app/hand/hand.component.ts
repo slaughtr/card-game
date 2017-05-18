@@ -9,6 +9,7 @@ import { CardService } from '../card.service';
 import { HandService } from '../hand.service'
 import { AuthService } from '../providers/auth.service';
 import { PlayCardService } from '../play-card.service'
+import { GameService } from '../game.service'
 
 //firebase
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -28,7 +29,7 @@ export class HandComponent implements OnInit {
   playerHand: any[] =[];
   hasCardBeenPlayed: Subject<void> = new Subject<void>();
 
-  constructor(private playerService: PlayerService,private authService: AuthService, private cardService: CardService, private handService: HandService, private playCardService: PlayCardService) { }
+  constructor(private playerService: PlayerService,private authService: AuthService, private cardService: CardService, private handService: HandService, private playCardService: PlayCardService, private gameService: GameService) { }
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(user=>{
@@ -46,15 +47,18 @@ export class HandComponent implements OnInit {
   }
 
   selectCard(card: Card) {
-    console.log(card)
-    this.playCardService.getLaneToPlay(card)
-    this.playCardService.playCardClickListener.takeUntil(this.hasCardBeenPlayed).subscribe(result => {
-      if (result === "played") {
-        //I think this is causing the console errors about old2.dispose when it calls cleanUp?
-        this.playerHand.splice(this.playerHand.indexOf(card), 1)
-        this.cleanUp()
-      }
-    })
+      // if ((this.gameService.playerSelectedDeck === 'pirate' && this.gameService.isPirateTurn) || (this.gameService.playerSelectedDeck === 'wizard' && this.gameService.isWizardTurn)) {
+        this.playCardService.getLaneToPlay(card)
+        this.playCardService.playCardClickListener.takeUntil(this.hasCardBeenPlayed).subscribe(result => {
+          if (result === "played") {
+            //I think this is causing the console errors about old2.dispose when it calls cleanUp?
+            this.playerHand.splice(this.playerHand.indexOf(card), 1)
+            this.cleanUp()
+          }
+        })
+      // } else {
+        // console.log('not your turn')
+      // }
   }
 
   cleanUp() {
