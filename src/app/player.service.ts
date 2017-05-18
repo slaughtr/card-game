@@ -36,38 +36,30 @@ export class PlayerService {
   saveDeck(deck){
     var playerDeckUpdate = this.database.object('game/');
     playerDeckUpdate.update({pirateDeck:deck});
-    console.log("player deck update: "+playerDeckUpdate);
-    console.log('deck recieved'+deck);
-  }
-
-  updateHand(){
-    console.log('players from player service'+this.players);
   }
 
   savePlayerDeck(deck) {
-    console.log('ding')
     let pirateDeck = this.getPirateDeck();
-    console.log("pirateDeck",pirateDeck);
-
-
-      pirateDeck.update({Deck: deck});
-    }
-
-
-  // checkForPlayers() {
-  //   return this.game.object('game');
-  // }
-
-  getPlayerPlayedCards(playerId: string) {
-    return this.database.object('players/' + playerId + '/playedCards/')
+    pirateDeck.update({Deck: deck});
   }
 
+  getPlayerPlayedCards(playerId: string) {
+    return this.database.object('players/' + playerId + '/playedCards/');
+  }
 
+  getPlayerPlayedCardById(playerId: string, cardId: string) {
+    return this.database.object('players/' + playerId + '/playedCards/' + cardId);
+  }
 
+  removePlayerPlayedCard() {
+    var playerId: string = "0";
+    var cardId: string = "0";
+    var cardToRemove = this.getPlayerPlayedCardById(playerId, cardId);
+    cardToRemove.remove();
+  }
 
   updatePlayerPlayedCards(playerId: string, index: number, card: Card) {
     var indexToUpdate = index
-    console.log(playerId, index, card)
     var cardToUpdate = this.getPlayerPlayedCards(playerId)
     cardToUpdate.update({ [indexToUpdate] :  {
       name: card.name,
