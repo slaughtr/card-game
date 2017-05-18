@@ -4,13 +4,19 @@ main {
 
 body {
   background-image: url('http://www.wallpapers-web.com/data/out/84/4474558-free-space-wallpapers.jpg');
-}
-
-#game-title {
-  font-family: 'Space Mono', monospace;
+  height: 100vh;
 }
 
 a {
   font-family: 'Space Mono', monospace;
   color: white;
+}
+
+.nav-span {
+  border-left: thin solid #FFFFFF;
+  color: white;
+}
+
+#game-title {
+  font-family: 'Space Mono', monospace;
 }
