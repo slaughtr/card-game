@@ -222,3 +222,17 @@
 app-lane {
   border: 1px solid black;
 }
+
+
+/* modal below */
+.winModal {
+  color: white;
+  margin-top: 40%;
+  text-align: center;
+}
+
+.loseModal {
+  color: white;
+  margin-top: 40%;
+  text-align: center;
+}
