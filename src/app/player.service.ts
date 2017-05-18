@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
+import * as firebase from 'firebase/app';
 
 import { Card } from './card.model'
 
@@ -62,8 +63,18 @@ export class PlayerService {
     return this.database.object('players/' + playerId + '/playedCards/')
   }
 
+  getEnemyPlayerPlayedCards(playerId: string) {
+    return this.database.object('players/' + playerId + '/playedCards/')
+  }
 
+  getEnemyPlayerPlayedCardByIndexOnce(playerId: string, index: number) {
+    console.log('index in getEnemyPlayerPlayedCardByIndexOnce'+index)
+    return firebase.database().ref('/players/'+playerId+'/playedCards/'+index).once('value');
+  }
 
+  getEnemyPlayerPlayedCardByIndex(playerId: string, index: number) {
+      return this.database.object('players/' + playerId + '/playedCards/' + index)
+  }
 
   updatePlayerPlayedCards(playerId: string, index: number, card: Card) {
     var indexToUpdate = index

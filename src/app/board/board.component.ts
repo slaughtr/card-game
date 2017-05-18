@@ -36,6 +36,11 @@ export class BoardComponent implements OnInit {
     this.enemyLaneService.getEnemyLanes()
     // console.log('wiz: ' + this.gameService.isWizardTurn)
     // console.log('pir: ' + this.gameService.isPirateTurn)
+    //below for testing
+    this.gameService.playerSelectedDeck = 'wizard'
+    this.gameService.isWizardTurn = true
+    // console.log(this.gameService.playerSelectedDeck)
+    // console.log(this.gameService.isWizardTurn)
   }
 
   getPirateDeck() {
@@ -48,10 +53,38 @@ export class BoardComponent implements OnInit {
     this.playerService.savePlayerDeck(this.pirateDeck);
   }
 
+  endOfTurnAttackRound() {
+    var indexToAttack: number = 0
+    this.playerService.getPlayerPlayedCards("1").subscribe((cards)=> {
+      cards.forEach(card => {
+        var attackingCardAttack = card.attack
+        this.playerService.getEnemyPlayerPlayedCardByIndexOnce('0', indexToAttack).then(value => {
+          let currentIndex = indexToAttack
+          indexToAttack++
+          if (value.val() !== null) {
+            // console.log(value.val().health)
+            let enemyCard = this.playerService.getEnemyPlayerPlayedCardByIndex('0', currentIndex)
+            let enemyCardHealth = value.val().health - attackingCardAttack
+            enemyCard.update({health: enemyCardHealth})
+            if (enemyCardHealth < 1) {
+              console.log('think ya killed it')
+            }
+          } else {
+            console.log('either an error or nothing to attack in opposing lane')
+          }
+        })
+      })
+
+
+    })
+
+  }
+
+
+
   advanceTurnSender() {
-    if (this.gameService.playerSelectedDeck === 'pirate' && this.gameService.isPirateTurn) {
-      this.gameService.advanceTurn()
-    } else if (this.gameService.playerSelectedDeck === 'wizard' && this.gameService.isWizardTurn) {
+    if ((this.gameService.playerSelectedDeck === 'pirate' && this.gameService.isPirateTurn) || (this.gameService.playerSelectedDeck === 'wizard' && this.gameService.isWizardTurn)) {
+      this.endOfTurnAttackRound()
       this.gameService.advanceTurn()
     } else {
       console.log('something went wrong in board.component advanceTurnSender')
