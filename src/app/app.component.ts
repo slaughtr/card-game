@@ -19,6 +19,7 @@ export class AppComponent {
   ngOnInit(){
     this.authService.getCurrentUser().subscribe(user=>{
       this.user = user;
+      console.log(user);
     })
   }
 

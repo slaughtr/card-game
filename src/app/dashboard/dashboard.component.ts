@@ -61,8 +61,8 @@ export class DashboardComponent implements OnInit {
     let currentGame = this.gameService.getGame().subscribe((game)=> {
       this.game = game;
       console.log("dashboar", game);
-        this.piratePlayer = game.Pirate.playerName;
-        this.wizardPlayer = game.Wizard.playerName;
+        this.piratePlayer = game.pirate.playerName;
+        this.wizardPlayer = game.wizard.playerName;
     });
   }
 }
