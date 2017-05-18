@@ -34,6 +34,8 @@ export class BoardComponent implements OnInit {
     //this function loads cards already played on init. Afterwards, players should already be subscribed to the played cards, so not necessary afterwards?
     this.playCardService.getPlayedCards()
     this.enemyLaneService.getEnemyLanes()
+    console.log('wiz: ' + this.gameService.isWizardTurn)
+    console.log('pir: ' + this.gameService.isPirateTurn)
   }
 
   getPirateDeck() {

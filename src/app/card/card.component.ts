@@ -23,7 +23,7 @@ export class CardComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.card)
+    // console.log(this.card)
   }
 
 
