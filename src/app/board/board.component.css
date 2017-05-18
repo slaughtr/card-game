@@ -219,10 +219,13 @@
   grid-row-end: 6;
   border: solid purple 1px;
 }
+
 app-lane {
   border: 1px solid black;
 }
 
+p {
+  color: white;
 
 /* modal below */
 .winModal {
