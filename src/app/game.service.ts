@@ -8,7 +8,7 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class GameService {
   game: FirebaseObjectObservable<any>;
-
+  playerSelectedDeck: string
 
 
   constructor(private database: AngularFireDatabase, private authService: AuthService) {
@@ -35,12 +35,13 @@ export class GameService {
   beThePirate(user){
     let currentGame = this.getGame();
     currentGame.update({Pirate: user.displayName});
-
+    this.playerSelectedDeck = 'pirate'
   }
 
   beTheWizard(user){
     let currentGame = this.getGame();
     currentGame.update({Wizard: user.displayName});
+    this.playerSelectedDeck = 'wizard'
   }
 
   getDiscard() {
@@ -64,21 +65,25 @@ export class GameService {
     return this.database.object('/game/turns/')
   }
 
-  shouldAdvanceTurn = false
+  isPirateTurn = true
+  isWizardTurn = false
+  currentNumTurns: number = 0
 
   advanceTurn() {
-    var currentNumTurns: number = 0
-    this.shouldAdvanceTurn = true
+    // console.log('wiz: ' + this.isWizardTurn)
+    // console.log('pir: ' + this.isPirateTurn)
     let currentGame = this.getGame()
     let currentTurns = this.getTurns()
     this.getTurnsOnce().then(value => {
-      currentNumTurns = value.val().turns + 1
-      console.log(currentNumTurns)
-      currentGame.update({turns: currentNumTurns})
 
-    })
+      this.currentNumTurns = value.val().turns + 1
+      console.log(this.currentNumTurns)
+      currentGame.update({turns: this.currentNumTurns})
+        this.isPirateTurn = !this.isPirateTurn
+        this.isWizardTurn = !this.isWizardTurn
+      })
+  }
 
-      }
 
   // For V.2.0
   // getGameById(gameId: string) {
