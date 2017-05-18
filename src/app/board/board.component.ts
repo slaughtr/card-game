@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, trigger, state, keyframes,style,transition,animate } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { PlayerService } from '../player.service'
 
@@ -13,8 +13,31 @@ import { EnemyLaneService } from '../enemy-lane.service'
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.css']
+  styleUrls: ['./board.component.css'],
+  animations: [
+    trigger('focusText', [
+      state('inactive', style({
+        transform: 'scale(1)',
+        backgroundColor: "#eee"
+      })),
+      state('active', style({
+        transform: 'scale(3)',
+        backgroundColor: "#cfd8dc"
+      })),
+      transition('inactive => active', animate('1000ms ease-in')),
+      transition('active => inactive', animate('1000ms ease-in'))
+    ]),
+    trigger('movePanel', [
+      transition (':enter', [
+        style ({transform: 'scaleY(5)'} ),
+
+        // style ({transform: 'translateY(-100%)'}),
+      animate(1000)
+    ]),
+  ])
+]
 })
+
 
 export class BoardComponent implements OnInit {
   player;

@@ -1,6 +1,6 @@
 <p *ngIf="!wizard || !pirate">Waitng...</p>
 
-<div *ngIf="wizard && pirate" class="container">
+<div *ngIf="wizard && pirate" class="container"  [@movePanel]='state'>
   <div class="player1-land player1-land-grid">
     <app-lane1></app-lane1>
     <app-lane2></app-lane2>
