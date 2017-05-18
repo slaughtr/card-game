@@ -8,15 +8,30 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class GameService {
   game: FirebaseObjectObservable<any>;
+
+  pirateDeck: FirebaseObjectObservable<any>;
+  wizardDeck: FirebaseObjectObservable<any>;
+
   playerSelectedDeck: string
+
 
 
   constructor(private database: AngularFireDatabase, private authService: AuthService) {
     this.game = database.object('game');
+    this.pirateDeck = database.object('game/pirate');
+    this.wizardDeck = database.object('game/wizard');
+
   }
 
   getGame() {
     return this.game;
+  }
+
+  getWizardDeck() {
+    return this.wizardDeck;
+  }
+  getPirateDeck2() {
+    return this.pirateDeck;
   }
 
   // addGame(newGame: Game){
@@ -28,20 +43,23 @@ export class GameService {
   }
 
   resetsGame(){
-    let currentGame = this.getGame();
-    currentGame.update({Pirate: "", Wizard: ""});
+    let wizardDeck = this.getWizardDeck();
+    let pirateDeck = this.getPirateDeck2();
+    wizardDeck.update({playerName: false});
+    pirateDeck.update({playerName: false});
   }
 
   beThePirate(user){
-    let currentGame = this.getGame();
-    currentGame.update({Pirate: user.displayName});
-    this.playerSelectedDeck = 'pirate'
+
+    let pirateDeck = this.getPirateDeck2();
+    pirateDeck.update({playerName: user.displayName});
+
   }
 
   beTheWizard(user){
-    let currentGame = this.getGame();
-    currentGame.update({Wizard: user.displayName});
-    this.playerSelectedDeck = 'wizard'
+    let wizardDeck = this.getWizardDeck();
+    wizardDeck.update({playerName: user.displayName});
+
   }
 
   getDiscard() {
@@ -75,6 +93,7 @@ export class GameService {
     let currentGame = this.getGame()
     let currentTurns = this.getTurns()
     this.getTurnsOnce().then(value => {
+
       this.currentNumTurns = value.val().turns + 1
       console.log(this.currentNumTurns)
       currentGame.update({turns: this.currentNumTurns})
@@ -82,6 +101,7 @@ export class GameService {
         this.isWizardTurn = !this.isWizardTurn
       })
   }
+
 
   // For V.2.0
   // getGameById(gameId: string) {
