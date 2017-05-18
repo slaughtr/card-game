@@ -221,3 +221,9 @@
 app-lane {
   border: 1px solid black;
 }
+
+
+/* modal below */
+.winModal {
+  color: white;
+}

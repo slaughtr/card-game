@@ -1,6 +1,6 @@
 <!-- <p *ngIf="!wizard || !pirate">Waitng...</p> -->
 
-<div class="container">
+<div class="container board">
   <div class="player1-land player1-land-grid">
     <app-lane1></app-lane1>
     <app-lane2></app-lane2>
@@ -35,7 +35,7 @@
     <p>{{this.enemyPlayer?.health}}</p>
   </div>
   <div class="advance-turn">
-    <button type="button" (click)="advanceTurnSender()">End Turn</button>
+    <button type="button" (click)="advanceTurnSender()" class="endTurnButton">End Turn</button>
   </div>
 
   <!-- discard -->
@@ -45,4 +45,11 @@
 </div>
 
 
-<p (click)="getPirateDeck()">Boop</p>
+<p (click)="getPirateDeck()">Get Pirate Deck</p>
+
+<div class="winModal">
+	<div>
+		<h1><a href="/dashboard">YOU WIN!</a><small>click to go back to the dashboard</small></h1>
+
+	</div>
+</div>

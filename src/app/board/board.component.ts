@@ -9,6 +9,7 @@ import { AuthService } from '../providers/auth.service';
 import { PlayCardService } from '../play-card.service'
 import { EnemyLaneService } from '../enemy-lane.service'
 
+declare var jQuery: any
 
 @Component({
   selector: 'app-board',
@@ -29,6 +30,8 @@ export class BoardComponent implements OnInit {
   constructor(private playerService: PlayerService, private playCardService: PlayCardService, private enemyLaneService: EnemyLaneService, private authService: AuthService, private gameService: GameService) { }
 
   ngOnInit() {
+    jQuery('.winModal').hide()
+    jQuery('.board').show()
     this.playerService.getPlayerById("1").subscribe((player)=> {
       this.player = player
     })
@@ -38,21 +41,14 @@ export class BoardComponent implements OnInit {
     //this function loads cards already played on init. Afterwards, players should already be subscribed to the played cards, so not necessary afterwards?
 
     let currentGame = this.gameService.getGame().subscribe((game => {
-      console.log(game);
       this.wizard = game.wizard.playerName;
       this.pirate = game.pirate.playerName;
     }))
-
-
     this.playCardService.getPlayedCards()
     this.enemyLaneService.getEnemyLanes()
-    // console.log('wiz: ' + this.gameService.isWizardTurn)
-    // console.log('pir: ' + this.gameService.isPirateTurn)
-    //below for testing
+    //below for testing, needs to be removed
     this.gameService.playerSelectedDeck = 'wizard'
     this.gameService.isWizardTurn = true
-    // console.log(this.gameService.playerSelectedDeck)
-    // console.log(this.gameService.isWizardTurn)
   }
 
   getPirateDeck() {
@@ -88,8 +84,15 @@ export class BoardComponent implements OnInit {
           }
         })
       })
+      if (this.enemyPlayer) {
+        if (this.enemyPlayer.health < 1) {
+          console.log('enemy dead')
 
+            jQuery('.board').hide()
+            jQuery('.winModal').show()
 
+      }
+      }
     })
 
   }
@@ -100,9 +103,11 @@ export class BoardComponent implements OnInit {
     if ((this.gameService.playerSelectedDeck === 'pirate' && this.gameService.isPirateTurn) || (this.gameService.playerSelectedDeck === 'wizard' && this.gameService.isWizardTurn)) {
       this.endOfTurnAttackRound()
       this.gameService.advanceTurn()
+      jQuery(".endTurnButton").prop("disabled",true);
     } else {
       console.log('something went wrong in board.component advanceTurnSender')
       console.log('or maybe its not your turn')
+
     }
   }
 
