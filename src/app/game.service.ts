@@ -8,15 +8,27 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class GameService {
   game: FirebaseObjectObservable<any>;
+  pirateDeck: FirebaseObjectObservable<any>;
+  wizardDeck: FirebaseObjectObservable<any>;
 
 
 
   constructor(private database: AngularFireDatabase, private authService: AuthService) {
     this.game = database.object('game');
+    this.pirateDeck = database.object('game/pirate');
+    this.wizardDeck = database.object('game/wizard');
+
   }
 
   getGame() {
     return this.game;
+  }
+
+  getWizardDeck() {
+    return this.wizardDeck;
+  }
+  getPirateDeck2() {
+    return this.pirateDeck;
   }
 
   // addGame(newGame: Game){
@@ -28,19 +40,21 @@ export class GameService {
   }
 
   resetsGame(){
-    let currentGame = this.getGame();
-    currentGame.update({Pirate: false, Wizard: false});
+    let wizardDeck = this.getWizardDeck();
+    let pirateDeck = this.getPirateDeck2();
+    wizardDeck.update({playerName: false});
+    pirateDeck.update({playerName: false});
   }
 
   beThePirate(user){
-    let currentGame = this.getGame();
-    currentGame.update({Pirate: user.displayName});
+    let pirateDeck = this.getPirateDeck2();
+    pirateDeck.update({playerName: user.displayName});
 
   }
 
   beTheWizard(user){
-    let currentGame = this.getGame();
-    currentGame.update({Wizard: user.displayName});
+    let wizardDeck = this.getWizardDeck();
+    wizardDeck.update({playerName: user.displayName});
   }
 
   getDiscard() {
