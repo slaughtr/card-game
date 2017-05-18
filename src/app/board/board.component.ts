@@ -18,6 +18,7 @@ import { EnemyLaneService } from '../enemy-lane.service'
 
 export class BoardComponent implements OnInit {
   player;
+  enemyPlayer;
   wizard: boolean = false;
   pirate: boolean = false;
   currentUser: any;
@@ -28,10 +29,12 @@ export class BoardComponent implements OnInit {
   constructor(private playerService: PlayerService, private playCardService: PlayCardService, private enemyLaneService: EnemyLaneService, private authService: AuthService, private gameService: GameService) { }
 
   ngOnInit() {
-    // let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
-    //   this.player = player
-    // })
-
+    this.playerService.getPlayerById("1").subscribe((player)=> {
+      this.player = player
+    })
+    this.playerService.getPlayerById("0").subscribe((player)=> {
+      this.enemyPlayer = player
+    })
     //this function loads cards already played on init. Afterwards, players should already be subscribed to the played cards, so not necessary afterwards?
 
     let currentGame = this.gameService.getGame().subscribe((game => {
@@ -71,7 +74,6 @@ export class BoardComponent implements OnInit {
           let currentIndex = indexToAttack
           indexToAttack++
           if (value.val() !== null) {
-            // console.log(value.val().health)
             let enemyCard = this.playerService.getEnemyPlayerPlayedCardByIndex('0', currentIndex)
             let enemyCardHealth = value.val().health - attackingCardAttack
             enemyCard.update({health: enemyCardHealth})
@@ -80,7 +82,10 @@ export class BoardComponent implements OnInit {
               console.log('think ya killed it?')
             }
           } else {
-            console.log('either an error or nothing to attack in opposing lane')
+            // console.log('either an error or attacking enemy mothership')
+            console.log('enemyPlayer health before attack: ' + this.enemyPlayer.health)
+            this.enemyPlayer.health - attackingCardAttack
+            console.log('enemyPlayer health after attack: ' + this.enemyPlayer.health)
           }
         })
       })
