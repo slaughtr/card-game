@@ -16,7 +16,7 @@ export class PlayerService {
   }
 
   getPirateDeck() {
-    return this.database.object('game/Pirate');
+    return this.database.object('game/pirate');
   }
 
   getGame() {
@@ -35,8 +35,15 @@ export class PlayerService {
   }
 
   savePirateDeck(deck){
-    var playerDeckUpdate = this.database.object('game/pirate');
-    playerDeckUpdate.update({pirateDeck:deck});
+    console.log("update pirate hand: "+deck);
+    var pirateDeckUpdate = this.database.object('game/pirate');
+    pirateDeckUpdate.update({pirateDeck:deck});
+  }
+
+  savePirateHand(hand){
+    var pirateHandSave2 = this.database.object('game/pirate');
+    pirateHandSave2.update({pirateHand:hand});
+    console.log("update pirate hand: "+hand);
   }
 
   saveWizardDeck(deck){
@@ -44,28 +51,23 @@ export class PlayerService {
     playerDeckUpdate.update({wizardDeck:deck});
   }
 
-  updatePirateDeck(deck){
-    console.log("update pirate deck"+deck);
-    var pirateDeckUpdate = this.database.object('game/pirate');
-    pirateDeckUpdate.update({pirateDeck:deck});
+  saveWizardHand(hand){
+    console.log("update wizard hand: "+hand);
+    var wizardHandSave = this.database.object('game/wizard');
+    wizardHandSave.update({wizardHand:hand});
   }
 
-  savePirateHand(hand){
-    console.log("update pirate hand: "+hand);
-    var pirateHandSave = this.database.object('game/pirate');
-    pirateHandSave.update({pirateHand:hand});
+  updatePirateDeck(pDeck){
+    console.log("update pirate deck"+pDeck);
+    var pirateDeckUpdate = this.database.object('game/pirate');
+    console.log("pirate deck update"+pirateDeckUpdate);
+    pirateDeckUpdate.update({pirateDeck:pDeck});
   }
 
   updateWizardDeck(deck){
     console.log("update wizard deck"+deck);
     var wizardDeckUpdate = this.database.object('game/wizard');
     wizardDeckUpdate.update({wizardDeck:deck});
-  }
-
-  saveWizardHand(hand){
-    console.log("update wizard hand: "+hand);
-    var wizardHandSave = this.database.object('game/wizard');
-    wizardHandSave.update({wizardHand:hand});
   }
 
   updateHand(){
