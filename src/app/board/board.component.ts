@@ -9,6 +9,7 @@ import { AuthService } from '../providers/auth.service';
 import { PlayCardService } from '../play-card.service'
 import { EnemyLaneService } from '../enemy-lane.service'
 
+declare var jQuery: any
 
 @Component({
   selector: 'app-board',
@@ -29,30 +30,28 @@ export class BoardComponent implements OnInit {
   constructor(private playerService: PlayerService, private playCardService: PlayCardService, private enemyLaneService: EnemyLaneService, private authService: AuthService, private gameService: GameService) { }
 
   ngOnInit() {
+    jQuery('.winModal').hide()
+    jQuery('.board').show()
     this.playerService.getPlayerById("1").subscribe((player)=> {
       this.player = player
+      if (this.player.health < 1) {
+        jQuery('.board').hide()
+        jQuery('.loseModal').show()
+      }
     })
     this.playerService.getPlayerById("0").subscribe((player)=> {
       this.enemyPlayer = player
     })
     //this function loads cards already played on init. Afterwards, players should already be subscribed to the played cards, so not necessary afterwards?
-
     let currentGame = this.gameService.getGame().subscribe((game => {
-      console.log(game);
       this.wizard = game.wizard.playerName;
       this.pirate = game.pirate.playerName;
     }))
-
-
     this.playCardService.getPlayedCards()
     this.enemyLaneService.getEnemyLanes()
-    // console.log('wiz: ' + this.gameService.isWizardTurn)
-    // console.log('pir: ' + this.gameService.isPirateTurn)
-    //below for testing
+    //below for testing, needs to be removed
     this.gameService.playerSelectedDeck = 'wizard'
     this.gameService.isWizardTurn = true
-    // console.log(this.gameService.playerSelectedDeck)
-    // console.log(this.gameService.isWizardTurn)
   }
 
   getPirateDeck() {
@@ -82,28 +81,32 @@ export class BoardComponent implements OnInit {
               console.log('think ya killed it?')
             }
           } else {
-            // console.log('either an error or attacking enemy mothership')
-            console.log('enemyPlayer health before attack: ' + this.enemyPlayer.health)
-            this.enemyPlayer.health - attackingCardAttack
-            console.log('enemyPlayer health after attack: ' + this.enemyPlayer.health)
+            let playerToAttack = this.playerService.getPlayerById('0')
+            let enemyPlayerHealth = this.enemyPlayer.health - attackingCardAttack
+            playerToAttack.update({health: enemyPlayerHealth})
           }
         })
       })
-
-
+      if (this.enemyPlayer) {
+        if (this.enemyPlayer.health < 1) {
+          console.log('enemy dead')
+            jQuery('.board').hide()
+            jQuery('.winModal').show()
+      }
+      }
     })
 
   }
-
-
 
   advanceTurnSender() {
     if ((this.gameService.playerSelectedDeck === 'pirate' && this.gameService.isPirateTurn) || (this.gameService.playerSelectedDeck === 'wizard' && this.gameService.isWizardTurn)) {
       this.endOfTurnAttackRound()
       this.gameService.advanceTurn()
+      jQuery(".endTurnButton").prop("disabled",true);
     } else {
       console.log('something went wrong in board.component advanceTurnSender')
       console.log('or maybe its not your turn')
+
     }
   }
 
