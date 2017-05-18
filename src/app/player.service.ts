@@ -51,9 +51,7 @@ export class PlayerService {
     return this.database.object('players/' + playerId + '/playedCards/' + cardId);
   }
 
-  removePlayerPlayedCard() {
-    var playerId: string = "0";
-    var cardId: string = "0";
+  removePlayerPlayedCard(playerId: string, cardId: string) {
     var cardToRemove = this.getPlayerPlayedCardById(playerId, cardId);
     cardToRemove.remove();
   }

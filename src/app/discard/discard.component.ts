@@ -32,7 +32,8 @@ export class DiscardComponent implements OnInit {
   removeTest() {
     console.log("removeTest()");
     var playerId: string = "0";
-    this.playerService.removePlayerPlayedCard();
+    var cardId: string = "0";
+    this.playerService.removePlayerPlayedCard(playerId, cardId);
   }
 
 }
