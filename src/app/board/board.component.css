@@ -2,12 +2,13 @@
   display: grid;
   grid-template-columns: 5% 10% 10% 50% 10% 10% 5%;
   grid-template-rows: 5% 15% 5% 20% 10% 20% 5% 15% 5%;
-  border: solid 1px black;
+  border: solid 2px darkblue;
+  box-shadow: 1px 1px 1px #000;
   width: 95vw;
   height: 95vh;
   margin-left: auto;
   margin-right: 15px;
-    background-color: white;
+  background-color: white;
 }
 
 .selected {
