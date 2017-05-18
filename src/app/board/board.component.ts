@@ -31,11 +31,11 @@ export class BoardComponent implements OnInit {
     // let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
     //   this.player = player
     // })
-    //this function loads cards already played on init. Afterwards, players should already be subscribed to the played cards, so not necessary afterwards?
+    //this function loads cards already played on init. then, players should already be subscribed to the played cards, so not necessary afterwards?
     this.playCardService.getPlayedCards()
     this.enemyLaneService.getEnemyLanes()
-    console.log('wiz: ' + this.gameService.isWizardTurn)
-    console.log('pir: ' + this.gameService.isPirateTurn)
+    // console.log('wiz: ' + this.gameService.isWizardTurn)
+    // console.log('pir: ' + this.gameService.isPirateTurn)
   }
 
   getPirateDeck() {
@@ -49,7 +49,14 @@ export class BoardComponent implements OnInit {
   }
 
   advanceTurnSender() {
-    this.gameService.advanceTurn()
+    if (this.gameService.playerSelectedDeck === 'pirate' && this.gameService.isPirateTurn) {
+      this.gameService.advanceTurn()
+    } else if (this.gameService.playerSelectedDeck === 'wizard' && this.gameService.isWizardTurn) {
+      this.gameService.advanceTurn()
+    } else {
+      console.log('something went wrong in board.component advanceTurnSender')
+      console.log('or maybe its not your turn')
+    }
   }
 
 }

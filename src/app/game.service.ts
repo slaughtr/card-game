@@ -8,7 +8,7 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class GameService {
   game: FirebaseObjectObservable<any>;
-
+  playerSelectedDeck: string
 
 
   constructor(private database: AngularFireDatabase, private authService: AuthService) {
@@ -35,12 +35,13 @@ export class GameService {
   beThePirate(user){
     let currentGame = this.getGame();
     currentGame.update({Pirate: user.displayName});
-
+    this.playerSelectedDeck = 'pirate'
   }
 
   beTheWizard(user){
     let currentGame = this.getGame();
     currentGame.update({Wizard: user.displayName});
+    this.playerSelectedDeck = 'wizard'
   }
 
   getDiscard() {
@@ -69,8 +70,8 @@ export class GameService {
   currentNumTurns: number = 0
 
   advanceTurn() {
-    console.log('wiz: ' + this.isWizardTurn)
-    console.log('pir: ' + this.isPirateTurn)
+    // console.log('wiz: ' + this.isWizardTurn)
+    // console.log('pir: ' + this.isPirateTurn)
     let currentGame = this.getGame()
     let currentTurns = this.getTurns()
     this.getTurnsOnce().then(value => {
@@ -80,7 +81,6 @@ export class GameService {
         this.isPirateTurn = !this.isPirateTurn
         this.isWizardTurn = !this.isWizardTurn
       })
-
   }
 
   // For V.2.0
