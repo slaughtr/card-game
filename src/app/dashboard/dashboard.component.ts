@@ -5,6 +5,7 @@ import { GameService } from '../game.service';
 import { Game } from '../game.model';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from '../providers/auth.service';
+import { PlayerService } from '../player.service'
 
 
 @Component({
@@ -12,6 +13,7 @@ import { AuthService } from '../providers/auth.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+
 export class DashboardComponent implements OnInit {
   game: any;
   currentUser: any;
@@ -19,7 +21,7 @@ export class DashboardComponent implements OnInit {
   wizardPlayer: string ;
 
 
-  constructor(private router: Router, private gameService: GameService, private authService: AuthService) { }
+  constructor(private router: Router, private gameService: GameService, private authService: AuthService, private playerService: PlayerService) { }
 
   initGame(player) {
     this.router.navigate(['game', player.$key]);

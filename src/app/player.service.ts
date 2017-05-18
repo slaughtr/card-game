@@ -8,7 +8,8 @@ import { Card } from './card.model'
 export class PlayerService {
   players: FirebaseListObservable<any[]>;
   game: FirebaseObjectObservable<any>;
-
+  isPlayerPirate: boolean
+  isPlayerWizard: boolean
 
   constructor(private database: AngularFireDatabase) {
     this.players = database.list('players');
@@ -27,7 +28,13 @@ export class PlayerService {
   }
 
   getPlayerById(playerId: string) {
-    return this.database.object('players/' + playerId);
+    if (this.database.object('game/pirate/playerName/'+playerId)) {
+      console.log('foujd u pirate')
+      return this.database.object('game/pirate/userID/' + playerId);
+    } else if (this.database.object('game/wizard/userID/'+playerId)) {
+      console.log('found u wiazard')
+      return this.database.object('game/wizard/userID/' + playerId);
+    }
   }
 
   getPlayerDeck(playerId: string) {
