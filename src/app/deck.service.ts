@@ -11,10 +11,11 @@ export class DeckService {
 
   constructor(private database: AngularFireDatabase) {
     this.decks = database.list('deck');
-    this.sPirateDeck = this.database.list('/game/pirateDeck');
-    this.sWizardDeck = this.database.list('/game/wizardDeck');
-    this.pirateHand = this.database.list('/game/pirateDeck')
-    this.wizardHand = this.database.list('/game/wizardDeck')
+    this.sPirateDeck = this.database.list('/game/pirate/pirateDeck');
+    this.sWizardDeck = this.database.list('/game/wizard/wizardDeck');
+
+    this.pirateHand = this.database.list('/game/pirate');
+    this.wizardHand = this.database.list('/game/wizardHand');
   }
 
   shuffleDeck(){

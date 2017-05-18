@@ -25,7 +25,9 @@ export class DeckComponent implements OnInit {
   wizardCards;
   wizardShuffled;
 
-  constructor(private playerService: PlayerService,private authService: AuthService, private handService: HandService, private deckService: DeckService, private database: AngularFireDatabase) {}
+  constructor(private playerService: PlayerService,private authService: AuthService, private handService: HandService, private deckService: DeckService, private database: AngularFireDatabase) {
+
+  }
 
   ngOnInit() {
     let currentPlayer = this.authService.getCurrentUser().subscribe((player)=> {
@@ -61,18 +63,21 @@ export class DeckComponent implements OnInit {
   }
 
   dealHands(){
-    var currentPirateDeck = this.deckService.getPirateDeck().subscribe(wDeck =>{
-      var preDeck = wDeck;
-      var pirateDeltHand = new Array();
-      for(var i = 0; i < 3; i++){
-        pirateDeltHand.push(preDeck[i]);
-      }
-      preDeck.splice(0,3);
-      this.playerService.updatePirateDeck(preDeck);
-      this.playerService.savePirateHand(pirateDeltHand);
+    var pirateDeltHand = new Array();
+    var pDeck;
+    var currentPirateDeck = this.deckService.getPirateDeck().subscribe(deck =>{
+      pDeck = deck;
+      console.log("deck"+deck);
     });
+    console.log("pDeck"+pDeck);
+    for(var i = 0; i < 3; i++){
+      pirateDeltHand.push(pDeck[i]);
+    }
+    pDeck.splice(0,3);
+    this.playerService.savePirateHand(pirateDeltHand);
+    this.playerService.updatePirateDeck(pDeck);
 
-    var currentPirateDeck = this.deckService.getPirateDeck().subscribe(wDeck =>{
+    var currentWizardDeck = this.deckService.getWizardDeck().subscribe(wDeck =>{
       var preWizDeck = wDeck;
       var wizardDeltHand = new Array();
       for(var i = 0; i < 3; i++){
@@ -83,19 +88,35 @@ export class DeckComponent implements OnInit {
       this.playerService.saveWizardHand(wizardDeltHand);
     });
 
-    var currentWizardDeck = this.deckService.getWizardDeck();
   }
 
   drawCard(playerObj){
-    console.log(playerObj);
-    if(playerObj.type === "wizard"){
-      this.handService.putCardInHand(this.wizardShuffled[0]);
+    console.log("draw a card");
+    var currentPirateHand = this.database.list('game/pirate/pirateHand');
+    var updatePirateDeck = this.database.list('game/pirate/pirateDeck');
+    var currentPirateDeck = this.deckService.getPirateDeck().subscribe(deck =>{
+      console.log("current priate"+deck[0]);
+      currentPirateHand.push(deck[0]);
+      deck.splice(0,1);
+      this.playerService.updatePirateDeck(deck);
+      currentPirateDeck.unsubscribe();
+    });
+    var currentPlayer = this.authService.getCurrentUser().subscribe(user => {
+      // console.log("current player: "+user.displayName);
+      console.log("current player: "+user);
+      console.log("pirate Deck"+currentPirateDeck);
+      console.log("pirate hand"+currentPirateHand);
+    });
 
-      this.wizardShuffled.splice(0,1);
-    } else if(playerObj.type === "pirate"){
-      this.handService.putCardInHand(this.wizardShuffled[0]);
-      this.wizardShuffled.splice(0,1);
-    }
+
+    // if(playerObj.type === "wizard"){
+    //   this.handService.putCardInHand(this.wizardShuffled[0]);
+    //
+    //   this.wizardShuffled.splice(0,1);
+    // } else if(playerObj.type === "pirate"){
+    //   this.handService.putCardInHand(this.wizardShuffled[0]);
+    //   this.wizardShuffled.splice(0,1);
+    // }
   }
 
 }
