@@ -15,23 +15,9 @@ import { EnemyLaneService } from '../enemy-lane.service'
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css'],
   animations: [
-    trigger('focusText', [
-      state('inactive', style({
-        transform: 'scale(1)',
-        backgroundColor: "#eee"
-      })),
-      state('active', style({
-        transform: 'scale(3)',
-        backgroundColor: "#cfd8dc"
-      })),
-      transition('inactive => active', animate('1000ms ease-in')),
-      transition('active => inactive', animate('1000ms ease-in'))
-    ]),
-    trigger('movePanel', [
+    trigger('loadBoard', [
       transition (':enter', [
         style ({transform: 'scaleY(5)'} ),
-
-        // style ({transform: 'translateY(-100%)'}),
       animate(1000)
     ]),
   ])
@@ -48,6 +34,7 @@ export class BoardComponent implements OnInit {
   game: any;
   playerIsPirate: boolean;
   pirateDeck: any = [];
+  state: string = 'inactive';
 
   constructor(private playerService: PlayerService, private playCardService: PlayCardService, private enemyLaneService: EnemyLaneService, private authService: AuthService, private gameService: GameService) { }
 
@@ -76,6 +63,10 @@ export class BoardComponent implements OnInit {
     this.gameService.isWizardTurn = true
     // console.log(this.gameService.playerSelectedDeck)
     // console.log(this.gameService.isWizardTurn)
+  }
+
+  toggleMove(){
+    this.state=(this.state==='inactive' ? 'active':'inactive');
   }
 
   getPirateDeck() {
