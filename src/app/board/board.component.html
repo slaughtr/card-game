@@ -3,7 +3,10 @@
 <div *ngIf="wizard && pirate" class="container">
 -->
 
-<div class="container board">
+
+
+<div *ngIf="wizard && pirate" class="container board"  [@loadBoard]='state'>
+
 
   <div class="player1-land player1-land-grid">
     <app-lane1></app-lane1>
@@ -23,7 +26,9 @@
   </div>
 
   <div class="player2-land player2-land-grid">
-    <app-en-lane1></app-en-lane1>
+
+    <app-en-lane1>
+</app-en-lane1>
     <app-en-lane2></app-en-lane2>
     <app-en-lane3></app-en-lane3>
     <app-en-lane4></app-en-lane4>

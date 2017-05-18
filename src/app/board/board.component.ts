@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, trigger, state, keyframes,style,transition,animate } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { PlayerService } from '../player.service'
 
@@ -14,8 +14,17 @@ declare var jQuery: any
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.css']
+  styleUrls: ['./board.component.css'],
+  animations: [
+    trigger('loadBoard', [
+      transition (':enter', [
+        style ({transform: 'scaleY(5)'} ),
+      animate(1000)
+    ]),
+  ])
+]
 })
+
 
 export class BoardComponent implements OnInit {
   player;
@@ -26,7 +35,11 @@ export class BoardComponent implements OnInit {
   game: any;
   playerIsPirate: boolean;
   pirateDeck: any = [];
+
+  state: string = 'inactive';
+
   currentUserID
+
 
   constructor(private playerService: PlayerService, private playCardService: PlayCardService, private enemyLaneService: EnemyLaneService, private authService: AuthService, private gameService: GameService) { }
 
@@ -66,6 +79,13 @@ export class BoardComponent implements OnInit {
     this.gameService.isWizardTurn = true
   }
 
+
+  toggleMove(){
+    this.state=(this.state==='inactive' ? 'active':'inactive');
+  }
+
+ 
+
   // getPirateDeck() {
   //   this.pirateDeck = []
   //   this.gameService.getPirateDeck().subscribe(deck => {
@@ -75,6 +95,7 @@ export class BoardComponent implements OnInit {
   //   })
   //   this.playerService.savePlayerDeck(this.pirateDeck);
   // }
+
 
   endOfTurnAttackRound() {
     var indexToAttack: number = 0
