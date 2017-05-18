@@ -25,10 +25,11 @@ export class DeckComponent implements OnInit {
   wizardCards;
   wizardShuffled;
 
-  constructor(private playerService: PlayerService, private handService: HandService, private deckService: DeckService, private database: AngularFireDatabase) { }
+  constructor(private playerService: PlayerService,private authService: AuthService, private handService: HandService, private deckService: DeckService, private database: AngularFireDatabase) { }
 
   ngOnInit() {
-    let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
+    let currentPlayer = this.authService.getCurrentUser().subscribe((player)=> {
+      // console.log("player service in deck comp"+currentPlayer.displayName)
       this.player = player;
     });
 
@@ -40,6 +41,9 @@ export class DeckComponent implements OnInit {
 
       this.pirateShuffled = this.shuffleDeck(this.pirateDeck);
       this.wizardShuffled = this.shuffleDeck(this.wizardDeck);
+      console.log("deck component player"+this.player)
+      this.playerService.saveDeck(this.pirateShuffled);
+      this.playerService.saveDeck(this.wizardShuffled);
       console.log("end of subscribe");
     });
   }
@@ -59,8 +63,13 @@ export class DeckComponent implements OnInit {
   }
 
   drawCard(playerObj){
+    //have current play who clicked card
+    //have the shuffled deck of both players
+    //need to update the deck
+    //need to update the hand
     if(playerObj.type === "wizard"){
       this.handService.putCardInHand(this.wizardShuffled[0]);
+
       this.wizardShuffled.splice(0,1);
     } else if(playerObj.type === "pirate"){
       this.handService.putCardInHand(this.wizardShuffled[0]);

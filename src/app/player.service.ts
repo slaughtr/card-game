@@ -33,12 +33,15 @@ export class PlayerService {
     return this.database.object('players/' + playerId + '/inDeck');
   }
 
-  updateDeck(){
-
+  saveDeck(deck){
+    var playerDeckUpdate = this.database.object('game/');
+    playerDeckUpdate.update({pirateDeck:deck});
+    console.log("player deck update: "+playerDeckUpdate);
+    console.log('deck recieved'+deck);
   }
 
   updateHand(){
-    
+    console.log('players from player service'+this.players);
   }
 
   savePlayerDeck(deck) {
