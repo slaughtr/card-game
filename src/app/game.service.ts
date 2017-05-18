@@ -8,8 +8,11 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class GameService {
   game: FirebaseObjectObservable<any>;
+
   pirateDeck: FirebaseObjectObservable<any>;
   wizardDeck: FirebaseObjectObservable<any>;
+
+  playerSelectedDeck: string
 
 
 
@@ -47,6 +50,7 @@ export class GameService {
   }
 
   beThePirate(user){
+
     let pirateDeck = this.getPirateDeck2();
     pirateDeck.update({playerName: user.displayName});
 
@@ -55,6 +59,7 @@ export class GameService {
   beTheWizard(user){
     let wizardDeck = this.getWizardDeck();
     wizardDeck.update({playerName: user.displayName});
+
   }
 
   getDiscard() {
@@ -78,21 +83,25 @@ export class GameService {
     return this.database.object('/game/turns/')
   }
 
-  shouldAdvanceTurn = false
+  isPirateTurn = true
+  isWizardTurn = false
+  currentNumTurns: number = 0
 
   advanceTurn() {
-    var currentNumTurns: number = 0
-    this.shouldAdvanceTurn = true
+    // console.log('wiz: ' + this.isWizardTurn)
+    // console.log('pir: ' + this.isPirateTurn)
     let currentGame = this.getGame()
     let currentTurns = this.getTurns()
     this.getTurnsOnce().then(value => {
-      currentNumTurns = value.val().turns + 1
-      console.log(currentNumTurns)
-      currentGame.update({turns: currentNumTurns})
 
-    })
+      this.currentNumTurns = value.val().turns + 1
+      console.log(this.currentNumTurns)
+      currentGame.update({turns: this.currentNumTurns})
+        this.isPirateTurn = !this.isPirateTurn
+        this.isWizardTurn = !this.isWizardTurn
+      })
+  }
 
-      }
 
   // For V.2.0
   // getGameById(gameId: string) {

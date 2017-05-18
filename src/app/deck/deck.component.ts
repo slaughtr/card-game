@@ -25,11 +25,12 @@ export class DeckComponent implements OnInit {
   wizardCards;
   wizardShuffled;
 
-  constructor(private playerService: PlayerService, private handService: HandService, private deckService: DeckService, private database: AngularFireDatabase) { }
+  constructor(private playerService: PlayerService,private authService: AuthService, private handService: HandService, private deckService: DeckService, private database: AngularFireDatabase) {}
 
   ngOnInit() {
-    let currentPlayer = this.playerService.getPlayerById("1").subscribe((player)=> {
-      this.player = player;
+    let currentPlayer = this.authService.getCurrentUser().subscribe((player)=> {
+      console.log(player);
+      // this.player = player;
     });
 
     this.deckService.getDecks().subscribe(decks => {
@@ -40,7 +41,8 @@ export class DeckComponent implements OnInit {
 
       this.pirateShuffled = this.shuffleDeck(this.pirateDeck);
       this.wizardShuffled = this.shuffleDeck(this.wizardDeck);
-      console.log("end of subscribe");
+      this.playerService.savePirateDeck(this.pirateShuffled);
+      this.playerService.saveWizardDeck(this.wizardShuffled);
     });
   }
 
@@ -58,9 +60,37 @@ export class DeckComponent implements OnInit {
     return outputDeck;
   }
 
+  dealHands(){
+    var currentPirateDeck = this.deckService.getPirateDeck().subscribe(wDeck =>{
+      var preDeck = wDeck;
+      var pirateDeltHand = new Array();
+      for(var i = 0; i < 3; i++){
+        pirateDeltHand.push(preDeck[i]);
+      }
+      preDeck.splice(0,3);
+      this.playerService.updatePirateDeck(preDeck);
+      this.playerService.savePirateHand(pirateDeltHand);
+    });
+
+    var currentPirateDeck = this.deckService.getPirateDeck().subscribe(wDeck =>{
+      var preWizDeck = wDeck;
+      var wizardDeltHand = new Array();
+      for(var i = 0; i < 3; i++){
+        wizardDeltHand.push(preWizDeck[i]);
+      }
+      preWizDeck.splice(0,3);
+      this.playerService.updateWizardDeck(preWizDeck);
+      this.playerService.saveWizardHand(wizardDeltHand);
+    });
+
+    var currentWizardDeck = this.deckService.getWizardDeck();
+  }
+
   drawCard(playerObj){
+    console.log(playerObj);
     if(playerObj.type === "wizard"){
       this.handService.putCardInHand(this.wizardShuffled[0]);
+
       this.wizardShuffled.splice(0,1);
     } else if(playerObj.type === "pirate"){
       this.handService.putCardInHand(this.wizardShuffled[0]);
