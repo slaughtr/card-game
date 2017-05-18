@@ -26,19 +26,31 @@ export class BoardComponent implements OnInit {
   game: any;
   playerIsPirate: boolean;
   pirateDeck: any = [];
+  currentUserID
 
   constructor(private playerService: PlayerService, private playCardService: PlayCardService, private enemyLaneService: EnemyLaneService, private authService: AuthService, private gameService: GameService) { }
 
   ngOnInit() {
     jQuery('.winModal').hide()
     jQuery('.board').show()
-    this.playerService.getPlayerById("1").subscribe((player)=> {
+
+    let userID = this.authService.getCurrentUser().subscribe(user => {
+      if (user !== null) {
+        this.currentUserID = user.uid
+        this.initializeBoard()
+      }
+    })
+  }
+
+  initializeBoard() {
+    this.playerService.getPlayerById(this.authService.userId).subscribe((player)=> {
       this.player = player
       if (this.player.health < 1) {
         jQuery('.board').hide()
         jQuery('.loseModal').show()
       }
     })
+    
     this.playerService.getPlayerById("0").subscribe((player)=> {
       this.enemyPlayer = player
     })
@@ -54,15 +66,15 @@ export class BoardComponent implements OnInit {
     this.gameService.isWizardTurn = true
   }
 
-  getPirateDeck() {
-    this.pirateDeck = []
-    this.gameService.getPirateDeck().subscribe(deck => {
-      deck.cards.forEach(card=> {
-        this.pirateDeck.push(card);
-      });
-    })
-    this.playerService.savePlayerDeck(this.pirateDeck);
-  }
+  // getPirateDeck() {
+  //   this.pirateDeck = []
+  //   this.gameService.getPirateDeck().subscribe(deck => {
+  //     deck.cards.forEach(card=> {
+  //       this.pirateDeck.push(card);
+  //     });
+  //   })
+  //   this.playerService.savePlayerDeck(this.pirateDeck);
+  // }
 
   endOfTurnAttackRound() {
     var indexToAttack: number = 0
