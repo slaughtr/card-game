@@ -18,8 +18,8 @@ import { EnemyLaneService } from '../enemy-lane.service'
 
 export class BoardComponent implements OnInit {
   player;
-  wizardPlayer;
-  piratePlayer;
+  wizard: boolean;
+  pirate;
   currentUser: any;
   game: any;
   playerIsPirate: boolean;
@@ -32,6 +32,11 @@ export class BoardComponent implements OnInit {
     //   this.player = player
     // })
     //this function loads cards already played on init. Afterwards, players should already be subscribed to the played cards, so not necessary afterwards?
+    let currentGame = this.gameService.getGame().subscribe((game => {
+      console.log(game);
+      this.wizard = game.Wizard;
+      this.pirate = game.Pirate;
+    }))
     this.playCardService.getPlayedCards()
     this.enemyLaneService.getEnemyLanes()
   }

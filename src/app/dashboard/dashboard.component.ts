@@ -46,6 +46,7 @@ export class DashboardComponent implements OnInit {
 
   beTheWizard() {
     this.gameService.beTheWizard(this.currentUser);
+      this.router.navigate(["board"]);
   }
 
 

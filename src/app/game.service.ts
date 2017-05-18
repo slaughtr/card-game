@@ -29,7 +29,7 @@ export class GameService {
 
   resetsGame(){
     let currentGame = this.getGame();
-    currentGame.update({Pirate: "", Wizard: ""});
+    currentGame.update({Pirate: false, Wizard: false});
   }
 
   beThePirate(user){
@@ -75,7 +75,7 @@ export class GameService {
       currentNumTurns = value.val().turns + 1
       console.log(currentNumTurns)
       currentGame.update({turns: currentNumTurns})
-      
+
     })
 
       }
