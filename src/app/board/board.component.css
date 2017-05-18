@@ -226,4 +226,12 @@ app-lane {
 /* modal below */
 .winModal {
   color: white;
+  margin-top: 40%;
+  text-align: center;
+}
+
+.loseModal {
+  color: white;
+  margin-top: 40%;
+  text-align: center;
 }

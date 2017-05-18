@@ -34,12 +34,15 @@ export class BoardComponent implements OnInit {
     jQuery('.board').show()
     this.playerService.getPlayerById("1").subscribe((player)=> {
       this.player = player
+      if (this.player.health < 1) {
+        jQuery('.board').hide()
+        jQuery('.loseModal').show()
+      }
     })
     this.playerService.getPlayerById("0").subscribe((player)=> {
       this.enemyPlayer = player
     })
     //this function loads cards already played on init. Afterwards, players should already be subscribed to the played cards, so not necessary afterwards?
-
     let currentGame = this.gameService.getGame().subscribe((game => {
       this.wizard = game.wizard.playerName;
       this.pirate = game.pirate.playerName;
@@ -87,17 +90,13 @@ export class BoardComponent implements OnInit {
       if (this.enemyPlayer) {
         if (this.enemyPlayer.health < 1) {
           console.log('enemy dead')
-
             jQuery('.board').hide()
             jQuery('.winModal').show()
-
       }
       }
     })
 
   }
-
-
 
   advanceTurnSender() {
     if ((this.gameService.playerSelectedDeck === 'pirate' && this.gameService.isPirateTurn) || (this.gameService.playerSelectedDeck === 'wizard' && this.gameService.isWizardTurn)) {
