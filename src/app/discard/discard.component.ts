@@ -16,7 +16,7 @@ export class DiscardComponent implements OnInit {
   cards: FirebaseListObservable<any[]>;
   discard;
 
-  constructor(private database: AngularFireDatabase, private gameService: GameService, playerService: PlayerService) {  }
+  constructor(private database: AngularFireDatabase, private gameService: GameService, private playerService: PlayerService) {  }
 
   ngOnInit() {
     this.gameService.getDiscard().subscribe((discard) => {
@@ -27,6 +27,12 @@ export class DiscardComponent implements OnInit {
   addToDiscard() {
     var testCard: Card = new Card("Pirate Boatswain", 10, 5, "boatswaining");
     this.gameService.addToDiscard(testCard);
+  }
+
+  removeTest() {
+    console.log("removeTest()");
+    var playerId: string = "0";
+    this.playerService.removePlayerPlayedCard();
   }
 
 }
