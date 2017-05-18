@@ -50,16 +50,15 @@ export class GameService {
   }
 
   beThePirate(user){
-
     let pirateDeck = this.getPirateDeck2();
-    pirateDeck.update({playerName: user.displayName});
-
+    pirateDeck.update({playerName: user.displayName,
+                        userID: user.uid});
   }
 
   beTheWizard(user){
     let wizardDeck = this.getWizardDeck();
-    wizardDeck.update({playerName: user.displayName});
-
+    wizardDeck.update({playerName: user.displayName,
+                        userID: user.uid});
   }
 
   getDiscard() {
@@ -93,7 +92,6 @@ export class GameService {
     let currentGame = this.getGame()
     let currentTurns = this.getTurns()
     this.getTurnsOnce().then(value => {
-
       this.currentNumTurns = value.val().turns + 1
       console.log(this.currentNumTurns)
       currentGame.update({turns: this.currentNumTurns})
