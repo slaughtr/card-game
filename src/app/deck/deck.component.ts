@@ -34,8 +34,10 @@ export class DeckComponent implements OnInit {
       console.log(player);
       // this.player = player;
     });
+    // this.playerService.clearPirateHand();
 
     this.deckService.getDecks().subscribe(decks => {
+
       this.pirateDeck = decks[0];
       this.wizardDeck = decks[1];
       this.pirateCards = this.pirateDeck.cards;
@@ -66,25 +68,23 @@ export class DeckComponent implements OnInit {
     var pirateDeltHand = new Array();
     var pDeck;
     var currentPirateDeck = this.deckService.getPirateDeck().subscribe(deck =>{
-      pDeck = deck;
       console.log("deck"+deck);
+      for(var i = 0; i < 3; i++){
+        pirateDeltHand.push(deck[i]);
+      }
+      deck.splice(0,3);
+      this.playerService.savePirateHand(pirateDeltHand);
+      this.playerService.updatePirateDeck(deck);
+      currentPirateDeck.unsubscribe();
     });
-    console.log("pDeck"+pDeck);
-    for(var i = 0; i < 3; i++){
-      pirateDeltHand.push(pDeck[i]);
-    }
-    pDeck.splice(0,3);
-    this.playerService.savePirateHand(pirateDeltHand);
-    this.playerService.updatePirateDeck(pDeck);
 
     var currentWizardDeck = this.deckService.getWizardDeck().subscribe(wDeck =>{
-      var preWizDeck = wDeck;
       var wizardDeltHand = new Array();
       for(var i = 0; i < 3; i++){
-        wizardDeltHand.push(preWizDeck[i]);
+        wizardDeltHand.push(wDeck[i]);
       }
-      preWizDeck.splice(0,3);
-      this.playerService.updateWizardDeck(preWizDeck);
+      wDeck.splice(0,3);
+      this.playerService.updateWizardDeck(wDeck);
       this.playerService.saveWizardHand(wizardDeltHand);
     });
 

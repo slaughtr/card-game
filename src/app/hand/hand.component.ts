@@ -29,9 +29,13 @@ export class HandComponent implements OnInit {
   playerHand: any[] =[];
   hasCardBeenPlayed: Subject<void> = new Subject<void>();
 
-  constructor(private playerService: PlayerService,private authService: AuthService, private cardService: CardService, private handService: HandService, private playCardService: PlayCardService, private gameService: GameService) { }
+  constructor(private playerService: PlayerService,private authService: AuthService, private cardService: CardService, private handService: HandService, private playCardService: PlayCardService, private gameService: GameService, private database: AngularFireDatabase) { }
 
   ngOnInit() {
+
+    var activePirateHand = this.database.list('game/pirate/pirateHand');
+    console.log("active hand"+activePirateHand);
+
     this.authService.getCurrentUser().subscribe(user=>{
       this.user = user;
       console.log('current user from handcomponent: '+ user);

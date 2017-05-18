@@ -46,6 +46,11 @@ export class PlayerService {
     console.log("update pirate hand: "+hand);
   }
 
+  clearPirateHand(){
+    var clearHand = this.database.object('game/pirate/');
+    clearHand.update({pirateHand:null});
+  }
+
   saveWizardDeck(deck){
     var playerDeckUpdate = this.database.object('game/wizard');
     playerDeckUpdate.update({wizardDeck:deck});
