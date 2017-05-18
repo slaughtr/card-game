@@ -82,10 +82,9 @@ export class BoardComponent implements OnInit {
               console.log('think ya killed it?')
             }
           } else {
-            // console.log('either an error or attacking enemy mothership')
-            console.log('enemyPlayer health before attack: ' + this.enemyPlayer.health)
-            this.enemyPlayer.health - attackingCardAttack
-            console.log('enemyPlayer health after attack: ' + this.enemyPlayer.health)
+            let playerToAttack = this.playerService.getPlayerById('0')
+            let enemyPlayerHealth = this.enemyPlayer.health - attackingCardAttack
+            playerToAttack.update({health: enemyPlayerHealth})
           }
         })
       })
