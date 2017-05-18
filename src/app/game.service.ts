@@ -64,21 +64,24 @@ export class GameService {
     return this.database.object('/game/turns/')
   }
 
-  shouldAdvanceTurn = false
+  isPirateTurn = true
+  isWizardTurn = false
+  currentNumTurns: number = 0
 
   advanceTurn() {
-    var currentNumTurns: number = 0
-    this.shouldAdvanceTurn = true
+    console.log('wiz: ' + this.isWizardTurn)
+    console.log('pir: ' + this.isPirateTurn)
     let currentGame = this.getGame()
     let currentTurns = this.getTurns()
     this.getTurnsOnce().then(value => {
-      currentNumTurns = value.val().turns + 1
-      console.log(currentNumTurns)
-      currentGame.update({turns: currentNumTurns})
-      
-    })
+      this.currentNumTurns = value.val().turns + 1
+      console.log(this.currentNumTurns)
+      currentGame.update({turns: this.currentNumTurns})
+        this.isPirateTurn = !this.isPirateTurn
+        this.isWizardTurn = !this.isWizardTurn
+      })
 
-      }
+  }
 
   // For V.2.0
   // getGameById(gameId: string) {
