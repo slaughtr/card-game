@@ -59,6 +59,7 @@ export class PlayerService {
 
   getEnemyPlayerPlayedCardByIndex(playerId: string, index: number) {
       return this.database.object('players/' + playerId + '/playedCards/' + index)
+    }
 
   getPlayerPlayedCardById(playerId: string, cardId: string) {
     return this.database.object('players/' + playerId + '/playedCards/' + cardId);
