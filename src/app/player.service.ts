@@ -33,11 +33,38 @@ export class PlayerService {
     return this.database.object('players/' + playerId + '/inDeck');
   }
 
-  saveDeck(deck){
-    var playerDeckUpdate = this.database.object('game/');
+  savePirateDeck(deck){
+    var playerDeckUpdate = this.database.object('game/pirate');
     playerDeckUpdate.update({pirateDeck:deck});
-    console.log("player deck update: "+playerDeckUpdate);
-    console.log('deck recieved'+deck);
+  }
+
+  saveWizardDeck(deck){
+    var playerDeckUpdate = this.database.object('game/wizard');
+    playerDeckUpdate.update({wizardDeck:deck});
+  }
+
+  updatePirateDeck(deck){
+    console.log("update pirate deck"+deck);
+    var pirateDeckUpdate = this.database.object('game/pirate');
+    pirateDeckUpdate.update({pirateDeck:deck});
+  }
+
+  savePirateHand(hand){
+    console.log("update pirate hand: "+hand);
+    var pirateHandSave = this.database.object('game/pirate');
+    pirateHandSave.update({pirateHand:hand});
+  }
+
+  updateWizardDeck(deck){
+    console.log("update wizard deck"+deck);
+    var wizardDeckUpdate = this.database.object('game/wizard');
+    wizardDeckUpdate.update({wizardDeck:deck});
+  }
+
+  saveWizardHand(hand){
+    console.log("update wizard hand: "+hand);
+    var wizardHandSave = this.database.object('game/wizard');
+    wizardHandSave.update({wizardHand:hand});
   }
 
   updateHand(){

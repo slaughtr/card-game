@@ -25,12 +25,12 @@ export class DeckComponent implements OnInit {
   wizardCards;
   wizardShuffled;
 
-  constructor(private playerService: PlayerService,private authService: AuthService, private handService: HandService, private deckService: DeckService, private database: AngularFireDatabase) { }
+  constructor(private playerService: PlayerService,private authService: AuthService, private handService: HandService, private deckService: DeckService, private database: AngularFireDatabase) {}
 
   ngOnInit() {
     let currentPlayer = this.authService.getCurrentUser().subscribe((player)=> {
-      // console.log("player service in deck comp"+currentPlayer.displayName)
-      this.player = player;
+      console.log(player);
+      // this.player = player;
     });
 
     this.deckService.getDecks().subscribe(decks => {
@@ -41,10 +41,8 @@ export class DeckComponent implements OnInit {
 
       this.pirateShuffled = this.shuffleDeck(this.pirateDeck);
       this.wizardShuffled = this.shuffleDeck(this.wizardDeck);
-      console.log("deck component player"+this.player)
-      this.playerService.saveDeck(this.pirateShuffled);
-      this.playerService.saveDeck(this.wizardShuffled);
-      console.log("end of subscribe");
+      this.playerService.savePirateDeck(this.pirateShuffled);
+      this.playerService.saveWizardDeck(this.wizardShuffled);
     });
   }
 
@@ -62,11 +60,34 @@ export class DeckComponent implements OnInit {
     return outputDeck;
   }
 
+  dealHands(){
+    var currentPirateDeck = this.deckService.getPirateDeck().subscribe(wDeck =>{
+      var preDeck = wDeck;
+      var pirateDeltHand = new Array();
+      for(var i = 0; i < 3; i++){
+        pirateDeltHand.push(preDeck[i]);
+      }
+      preDeck.splice(0,3);
+      this.playerService.updatePirateDeck(preDeck);
+      this.playerService.savePirateHand(pirateDeltHand);
+    });
+
+    var currentPirateDeck = this.deckService.getPirateDeck().subscribe(wDeck =>{
+      var preWizDeck = wDeck;
+      var wizardDeltHand = new Array();
+      for(var i = 0; i < 3; i++){
+        wizardDeltHand.push(preWizDeck[i]);
+      }
+      preWizDeck.splice(0,3);
+      this.playerService.updateWizardDeck(preWizDeck);
+      this.playerService.saveWizardHand(wizardDeltHand);
+    });
+
+    var currentWizardDeck = this.deckService.getWizardDeck();
+  }
+
   drawCard(playerObj){
-    //have current play who clicked card
-    //have the shuffled deck of both players
-    //need to update the deck
-    //need to update the hand
+    console.log(playerObj);
     if(playerObj.type === "wizard"){
       this.handService.putCardInHand(this.wizardShuffled[0]);
 

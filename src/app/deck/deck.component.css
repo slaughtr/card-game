@@ -1,3 +1,6 @@
+.decks {
+  position: relative;
+}
 .player-deck {
   float:left;
   width:40%;
@@ -11,4 +14,9 @@
 
 .playerDeck img {
   width:100%;
+}
+
+#dealHands {
+  position:absolute;
+  top:-140px;
 }
