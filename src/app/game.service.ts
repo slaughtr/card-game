@@ -29,7 +29,7 @@ export class GameService {
 
   resetsGame(){
     let currentGame = this.getGame();
-    currentGame.update({Pirate: "", Wizard: ""});
+    currentGame.update({Pirate: false, Wizard: false});
   }
 
   beThePirate(user){
@@ -75,6 +75,7 @@ export class GameService {
     let currentGame = this.getGame()
     let currentTurns = this.getTurns()
     this.getTurnsOnce().then(value => {
+
       this.currentNumTurns = value.val().turns + 1
       console.log(this.currentNumTurns)
       currentGame.update({turns: this.currentNumTurns})
@@ -82,6 +83,7 @@ export class GameService {
         this.isWizardTurn = !this.isWizardTurn
       })
   }
+
 
   // For V.2.0
   // getGameById(gameId: string) {

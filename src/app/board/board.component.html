@@ -1,4 +1,6 @@
-<div class="container">
+<p *ngIf="!wizard && !pirate">Waitng...</p>
+
+<div *ngIf="wizard && pirate" class="container">
   <div class="player1-land player1-land-grid">
     <app-lane1></app-lane1>
     <app-lane2></app-lane2>
@@ -6,6 +8,16 @@
     <app-lane4></app-lane4>
     <app-lane5></app-lane5>
   </div>
+  <div class="player1-hand">
+    <app-hand></app-hand>
+  </div>
+  <div class="player1-deck">
+    <app-deck></app-deck>
+  </div>
+  <div class="player1-ship">
+    <p>P1 Ship</p>
+  </div>
+
   <div class="player2-land player2-land-grid">
     <app-en-lane1></app-en-lane1>
     <app-en-lane2></app-en-lane2>
@@ -16,22 +28,12 @@
   <div class="player2-hand" >
     <p>P2 Hand</p>
   </div>
-  <div class="player1-hand">
-    <app-hand></app-hand>
-    </div>
   <div class="player2-deck">
     <p>P2 Deck</p>
   </div>
   <div class="player2-ship">
     <p>P2 Ship</p>
   </div>
-  <div class="player1-deck">
-    <app-deck></app-deck>
-  </div>
-  <div class="player1-ship">
-    <p>P1 Ship</p>
-  </div>
-
   <div class="advance-turn">
     <button type="button" (click)="advanceTurnSender()">End Turn</button>
   </div>
@@ -41,4 +43,6 @@
     <app-discard></app-discard>
   </div>
 </div>
+
+
 <p (click)="getPirateDeck()">Boop</p>
