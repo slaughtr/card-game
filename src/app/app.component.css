@@ -4,6 +4,7 @@ main {
 
 body {
   background-image: url('http://www.wallpapers-web.com/data/out/84/4474558-free-space-wallpapers.jpg');
+  height: 100vh;
 }
 
 #game-title {
