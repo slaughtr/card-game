@@ -67,7 +67,8 @@ export class BoardComponent implements OnInit {
             let enemyCardHealth = value.val().health - attackingCardAttack
             enemyCard.update({health: enemyCardHealth})
             if (enemyCardHealth < 1) {
-              console.log('think ya killed it')
+              this.playerService.removePlayerPlayedCard('0', currentIndex.toString())
+              console.log('think ya killed it?')
             }
           } else {
             console.log('either an error or nothing to attack in opposing lane')
